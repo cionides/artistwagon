@@ -47,7 +47,9 @@
               <ul class="nav navbar-nav navbar-right">
                   <!-- START Alert menu-->
                   <li class="dropdown dropdown-list">
-                     <a href="#" data-toggle="dropdown">Matt Adelberger <span class="caret"></span></a>
+                     <a href="#" data-toggle="dropdown">
+                     	Matt Adelberger <span class="caret"></span>
+                     </a>
                      <!-- START Dropdown menu-->
                      <ul class="dropdown-menu animated flipInX">
                         <li>
@@ -95,17 +97,20 @@
          <div class="aside-inner">
          		<c:if test="${not empty userGroup}">
          	 	<h3 class="text-center">Balance</h3>
-         	 	<h1 class="text-center">
+         	 	<h1 class="text-center mt-sm">
          	 		<fmt:formatNumber value="${userGroup[0].balance}" type="currency" />
          	 	</h1>
-         	 	<div class="row bb p-lg text-center">
-         	 		<div class="col-lg-6 pr-sm">
-         	 			<a class="btn btn-block btn-primary" href="#">Withdraw</a>
-         	 		</div>
-         	 		<div class="col-lg-6 pl-sm">
-         	 			<a class="btn btn-block btn-primary" href="#">Request</a>
-         	 		</div>
-         	 	</div>	
+         	  <div class="mt-lg list-group text-center mb-sm">
+	           <a href="${pageContext.request.contextPath}/groups/${userGroup[0].id}/add" class="pl-lg list-group-item">
+	           	Add Money
+	           </a>
+	           <a href="${pageContext.request.contextPath}/groups/${userGroup[0].id}/withdraw" class="pl-lg list-group-item">
+	           	Withdraw Money
+	           </a>
+	           <a href="#" class="pl-lg list-group-item">
+	           	Request Money
+	           </a>
+            </div>
          	 	</c:if>
             <nav class="sidebar">
                <!-- START sidebar nav-->
@@ -140,45 +145,25 @@
 	                     </a>
 	                  </li>
                   </c:if>
+                  <c:if test="${empty userGroup}">
                   <li class="nav-heading ">
                      <span>Groups</span>
                   </li>
                   <li class=" ">
-                     <a href="${pageContext.request.contextPath}" title="New Group">
+                     <a href="${pageContext.request.contextPath}/groups/create" title="New Group">
                         <em class="fa fa-plus"></em>
                         <span>New Group</span>
                      </a>
                   </li>
                   <c:forEach items="${leftNavGroups}" var="userGroup" varStatus="count">
                   <li class=" ">
-                    <a href="#group${count.index}" title="${userGroup.group.name}" data-toggle="collapse">
-                       <em class="fa fa-group"></em>
-                       <span>${userGroup.group.name}</span>
-                    </a>
-                    <ul id="group${count.index}" class="nav sidebar-subnav collapse">
-                    	 <li class=" ">
-                          <a href="${pageContext.request.contextPath}/groups/${userGroup.id}" title="${userGroup.group.name} Snapshot">
-                             <span>Snapshot</span>
-                          </a>
-                       </li>
-                       <li class=" ">
-                          <a href="${pageContext.request.contextPath}/groups/${userGroup.id}/transactions" title="${userGroup.group.name} Transactions">
-                             <span>Transactions</span>
-                          </a>
-                       </li>
-                       <li class=" ">
-                          <a href="#" title="${userGroup.group.name} Members">
-                             <span>Members</span>
-                          </a>
-                       </li>
-                       <li class=" ">
-                          <a href="#" title="${userGroup.group.name} Tax Documents">
-                             <span>Tax Documents</span>
-                          </a>
-                       </li>
-                    </ul>
+                     <a href="${pageContext.request.contextPath}/groups/${userGroup.id}" title="${userGroup.group.name}">
+                        <em class="fa fa-group"></em>
+                        <span>${userGroup.group.name}</span>
+                     </a>
                   </li>
                  </c:forEach>
+                 </c:if>
                </ul>
                <!-- END sidebar nav-->
             </nav>

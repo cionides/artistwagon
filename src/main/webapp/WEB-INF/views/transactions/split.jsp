@@ -1,7 +1,7 @@
 <%@include file="/WEB-INF/views/layout/include.jspf"%>
 <%@include file="/WEB-INF/views/layout/header.jspf"%>
 
-<h3>Split ${transaction[0].type} <small>${group[0].name}</small></h3>
+<h3>Split ${transaction[0].type} <small>${userGroup[0].group.name}</small></h3>
 <div class="row">
    <div class="col-lg-12">
       <div class="panel panel-default">
@@ -57,7 +57,7 @@
                     </div>
                  </div>
               </fieldset>
-            	 <a href="${pageContext.request.contextPath}/groups/${group[0].id}/transactions" class="btn btn-primary pull-right">Submit</a>
+            	 <a href="${pageContext.request.contextPath}/groups/${userGroup[0].id}/transactions" class="btn btn-primary pull-right">Submit</a>
            </form>
         </div>
      </div>

@@ -29,7 +29,7 @@
                      <td>${transaction.description}</td>
                      <td><fmt:formatNumber value="${transaction.amount}" type="currency" /></td>
                      <td>${transaction.status}</td>
-                     <td><a href="${pageContext.request.contextPath}/groups/${group[0].id}/transactions/${transaction.id}/split" class="btn btn-primary">Split</a>
+                     <td><a href="${pageContext.request.contextPath}/groups/${userGroup[0].id}/transactions/${transaction.id}/split" class="btn btn-primary">Split</a>
                     </tr>
    							 </c:forEach>
                  </tbody>

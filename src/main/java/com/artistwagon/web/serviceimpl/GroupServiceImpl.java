@@ -19,6 +19,13 @@ public class GroupServiceImpl implements GroupService {
 	@Autowired
 	GroupDao groupDao;
 	
+	@Transactional
+	public void createGroup(UserGroup userGroup) {
+		
+		groupDao.createGroup(userGroup);
+		
+	}
+	
 	@Transactional(readOnly=true)
 	public List<UserGroup> getCurrentUsersGroups() {
 				
@@ -34,4 +41,5 @@ public class GroupServiceImpl implements GroupService {
 		return groupDao.getUserGroupById(id);
 
 	}
+
 }

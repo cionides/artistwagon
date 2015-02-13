@@ -1,7 +1,11 @@
 package com.artistwagon.web.domain;
 
+import static javax.persistence.GenerationType.IDENTITY;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -12,7 +16,7 @@ import javax.persistence.Table;
 public class UserGroup {
 	
 	private Integer id;
-	private User user;
+	private String username;
 	private Group group;
 	private Double balance;
 	
@@ -20,15 +24,16 @@ public class UserGroup {
 		
 	}
 	
-	public UserGroup(int id, User user, Group group,
-			double balance) {
+	public UserGroup(int id, String username, Group group,
+			Double balance) {
 		this.id = id;
-		this.user = user;
 		this.group = group;
+		this.username = username;
 		this.balance = balance;
 	}
 	
 	@Id
+	@GeneratedValue(strategy = IDENTITY)
 	@Column(name = "USER_GROUP_ID", unique = true, 
 		nullable = false)
 	public Integer getId() {
@@ -39,17 +44,7 @@ public class UserGroup {
 		this.id = id;
 	}
 	
-	@ManyToOne
-    @JoinColumn(name = "USERNAME")
-	public User getUser() {
-		return user;
-	}
-	
-	public void setUser(User user) {
-		this.user = user;
-	}
-	
-	@ManyToOne
+	@ManyToOne(cascade={CascadeType.ALL})
     @JoinColumn(name = "GROUP_ID")
 	public Group getGroup() {
 		return group;
@@ -67,5 +62,13 @@ public class UserGroup {
 	public void setBalance(Double balance) {
 		this.balance = balance;
 	}
-	
+
+	@Column(name = "USERNAME")
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
 }

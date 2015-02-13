@@ -60,4 +60,63 @@ public class TransactionController extends BaseController {
  
 	}
 	
+	@RequestMapping(value = {"/groups/{userGroupId}/withdraw"}, method = RequestMethod.GET)
+	public ModelAndView viewWithdrawMoney(@PathVariable int userGroupId) {
+ 
+		ModelAndView model = new ModelAndView();
+		model.setViewName("transactions/withdraw");
+		
+		List<UserGroup> userGroup = groupService.getUserGroupById(userGroupId);
+		model.addObject("userGroup", userGroup);
+		
+		model.addObject("leftNavGroups", groupService.getCurrentUsersGroups());
+		
+		return model;
+ 
+	}
+	
+	@RequestMapping(value = {"/groups/{userGroupId}/withdraw/submit"}, method = RequestMethod.GET)
+	public ModelAndView withdrawMoney(@PathVariable int userGroupId) {
+ 
+		ModelAndView model = new ModelAndView();
+		model.setViewName("group/snapshot");
+		
+		List<UserGroup> userGroup = groupService.getUserGroupById(userGroupId);
+		model.addObject("userGroup", userGroup);
+		
+		model.addObject("leftNavGroups", groupService.getCurrentUsersGroups());
+		
+		return model;
+ 
+	}
+	
+	@RequestMapping(value = {"/groups/{userGroupId}/add"}, method = RequestMethod.GET)
+	public ModelAndView viewAddMoney(@PathVariable int userGroupId) {
+ 
+		ModelAndView model = new ModelAndView();
+		model.setViewName("transactions/add");
+		
+		List<UserGroup> userGroup = groupService.getUserGroupById(userGroupId);
+		model.addObject("userGroup", userGroup);
+		
+		model.addObject("leftNavGroups", groupService.getCurrentUsersGroups());
+		
+		return model;
+ 
+	}
+	
+	@RequestMapping(value = {"/groups/{userGroupId}/add/submit"}, method = RequestMethod.GET)
+	public ModelAndView addMoney(@PathVariable int userGroupId) {
+ 
+		ModelAndView model = new ModelAndView();
+		model.setViewName("group/snapshot");
+		
+		List<UserGroup> userGroup = groupService.getUserGroupById(userGroupId);
+		model.addObject("userGroup", userGroup);
+		
+		model.addObject("leftNavGroups", groupService.getCurrentUsersGroups());
+		
+		return model;
+ 
+	}
 }

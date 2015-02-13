@@ -23,8 +23,8 @@ public class User {
 	private String username;
 	private String password;
 	private boolean enabled;
+	private String fullName;
 	private Set<UserRole> userRole = new HashSet<UserRole>(0);
-	private Set<UserGroup> userGroups = new HashSet<UserGroup>(0);
  
 	public User() {
 	}
@@ -36,13 +36,11 @@ public class User {
 	}
  
 	public User(String username, String password, 
-		boolean enabled, Set<UserRole> userRole,
-		Set<UserGroup> userGroups){
+		boolean enabled, Set<UserRole> userRole){
 		this.username = username;
 		this.password = password;
 		this.enabled = enabled;
 		this.userRole = userRole;
-		this.userGroups = userGroups;
 	}
  
 	@Id
@@ -83,13 +81,13 @@ public class User {
 	public void setUserRole(Set<UserRole> userRole) {
 		this.userRole = userRole;
 	}
-	
-	@OneToMany(mappedBy = "user")
-	public Set<UserGroup> getUserGroups() {
-		return userGroups;
+
+	@Column(name = "FULL_NAME")
+	public String getFullName() {
+		return fullName;
 	}
-	
-	public void setUserGroups(Set<UserGroup> userGroups) {
-		this.userGroups = userGroups;
+
+	public void setFullName(String fullName) {
+		this.fullName = fullName;
 	}
 }

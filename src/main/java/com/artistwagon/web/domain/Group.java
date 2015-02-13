@@ -27,7 +27,7 @@ public class Group {
 	public Group() {
 		
 	}
- 
+	
 	public Group(Integer id, String name,
 			Set<UserGroup> userGroups) {
 		this.id = id;
@@ -62,4 +62,5 @@ public class Group {
 	public void setUserGroups(Set<UserGroup> userGroups) {
 		this.userGroups = userGroups;
 	}
+
 }
