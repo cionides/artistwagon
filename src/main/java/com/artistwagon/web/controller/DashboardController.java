@@ -16,7 +16,7 @@ public class DashboardController extends BaseController {
 	@Autowired
 	GroupService groupService;
 	
-	@RequestMapping(value = {"/"}, method = RequestMethod.GET)
+	@RequestMapping(value = {"/app"}, method = RequestMethod.GET)
 	public ModelAndView index() {
  
 		ModelAndView model = new ModelAndView();

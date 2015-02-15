@@ -6,7 +6,7 @@
    <div class="col-lg-12">
     <div class="panel panel-default">
     	<div class="panel-body">
-		   	<form:form method="POST" action="${pageContext.request.contextPath}/groups/create/save" class="form-horizontal">
+		   	<form:form method="POST" action="${pageContext.request.contextPath}/app/groups/create/save" class="form-horizontal">
 		    	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 		    	<fieldset>
 		    	<legend>Group Information</legend>

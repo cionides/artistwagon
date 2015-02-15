@@ -22,14 +22,14 @@ public class GroupController extends BaseController {
 	@Autowired
 	GroupService groupService;
 	
-	@RequestMapping(value = {"/groups"}, method = RequestMethod.GET)
+	@RequestMapping(value = {"app/groups"}, method = RequestMethod.GET)
 	public ModelAndView viewAllGroups() {
 		
 		ModelAndView model = new ModelAndView();
 		model.setViewName("group/all");
 		
-		List<UserGroup> groups = groupService.getCurrentUsersGroups();
-		model.addObject("groups", groups);
+		List<UserGroup> userGroups = groupService.getCurrentUsersGroups();
+		model.addObject("userGroups", userGroups);
 		
 		model.addObject("leftNavGroups", groupService.getCurrentUsersGroups());
 		
@@ -37,7 +37,7 @@ public class GroupController extends BaseController {
 		
 	}
 	
-	@RequestMapping(value = {"/groups/{userGroupId}"}, method = RequestMethod.GET)
+	@RequestMapping(value = {"app/groups/{userGroupId}"}, method = RequestMethod.GET)
 	public ModelAndView viewSnapshot(@PathVariable int userGroupId) {
 		
 		ModelAndView model = new ModelAndView();
@@ -52,7 +52,7 @@ public class GroupController extends BaseController {
 		
 	}
 	
-	@RequestMapping(value = {"/groups/create"})
+	@RequestMapping(value = {"app/groups/create"})
 	public ModelAndView viewCreateGroup() {
 		
 		ModelAndView model = new ModelAndView();
@@ -66,7 +66,7 @@ public class GroupController extends BaseController {
 		
 	}
 	
-	@RequestMapping(value = {"/groups/create/save"}, method = RequestMethod.POST)
+	@RequestMapping(value = {"app/groups/create/save"}, method = RequestMethod.POST)
 	public ModelAndView createGroup(@ModelAttribute("command") Group group) {
 		
 		UserGroup userGroup = new UserGroup();
@@ -88,7 +88,7 @@ public class GroupController extends BaseController {
 		
 	}
 	
-	@RequestMapping(value = {"/groups/{userGroupId}/members"})
+	@RequestMapping(value = {"app/groups/{userGroupId}/members"})
 	public ModelAndView viewCreateGroup(@PathVariable int userGroupId) {
 		
 		ModelAndView model = new ModelAndView();

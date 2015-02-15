@@ -57,7 +57,7 @@
                     </div>
                  </div>
               </fieldset>
-            	 <a href="${pageContext.request.contextPath}/groups/${userGroup[0].id}/transactions" class="btn btn-primary pull-right">Submit</a>
+            	 <a href="${pageContext.request.contextPath}/app/groups/${userGroup[0].id}/transactions" class="btn btn-primary pull-right">Submit</a>
            </form>
         </div>
      </div>

@@ -4,7 +4,7 @@
 <h3>Transactions <small>${group[0].name}</small></h3>
 <div class="row">
    <div class="col-lg-12">
-      <div class="panel panel-default">
+      <div class="panel panel-default panel-flat ba radius-clear">
       	<div class="panel-heading">
       		<div class="panel-title">Transactions</div>
       	</div>
@@ -29,7 +29,7 @@
                      <td>${transaction.description}</td>
                      <td><fmt:formatNumber value="${transaction.amount}" type="currency" /></td>
                      <td>${transaction.status}</td>
-                     <td><a href="${pageContext.request.contextPath}/groups/${userGroup[0].id}/transactions/${transaction.id}/split" class="btn btn-primary">Split</a>
+                     <td><a href="${pageContext.request.contextPath}/app/groups/${userGroup[0].id}/transactions/${transaction.id}/split" class="btn btn-primary">Split</a>
                     </tr>
    							 </c:forEach>
                  </tbody>

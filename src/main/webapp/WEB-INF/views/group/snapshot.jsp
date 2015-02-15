@@ -4,7 +4,7 @@
 <h3>Snapshot <small>Cowboy Jukebox</small></h3>
 <div class="row">
    <div class="col-lg-8">
-      <div class="panel panel-default">
+      <div class="panel panel-default panel-flat ba radius-clear">
       	<div class="panel-heading">
       		<div class="panel-title">Recent Transactions</div>
       	</div>
@@ -21,27 +21,6 @@
                     </tr>
                  </thead>
                  <tbody>
-                    <tr>
-                       <td>01/30/2015</td>
-                       <td>Debit</td>
-                       <td>Guitar Center - 123 Main St</td>
-                       <td>$42.53</td>
-                       <td>Approved</td>
-                    </tr>
-                    <tr>
-                       <td>01/30/2015</td>
-                       <td>Debit</td>
-                       <td>Guitar Center - 123 Main St</td>
-                       <td>$42.53</td>
-                       <td>Approved</td>
-                    </tr>
-                    <tr>
-                       <td>01/30/2015</td>
-                       <td>Debit</td>
-                       <td>Guitar Center - 123 Main St</td>
-                       <td>$42.53</td>
-                       <td>Approved</td>
-                     </tr>
                  </tbody>
               </table>
            </div>
@@ -50,7 +29,7 @@
         	<div class="row">
         		<div class="col-lg-9"></div>
           	<div class="col-lg-3">
-          		<a href="${pageContext.request.contextPath}/groups/1/transactions" class="btn btn-primary btn-block">All Transactions</a>
+          		<a href="${pageContext.request.contextPath}/app/groups/1/transactions" class="btn btn-primary btn-block">All Transactions</a>
             </div>
         	</div>
      		</div>

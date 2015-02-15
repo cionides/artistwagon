@@ -31,7 +31,7 @@
          <nav role="navigation" class="navbar topnavbar">
             <!-- START navbar header-->
             <div class="navbar-header">
-               <a href="${pageContext.request.contextPath}" class="navbar-brand">
+               <a href="${pageContext.request.contextPath}/app" class="navbar-brand">
                   <div class="brand-logo">
                      <h2>Artist Wagon</h2>
                   </div>
@@ -43,6 +43,15 @@
             <!-- END navbar header-->
             <!-- START Nav wrapper-->
             <div class="nav-wrapper">
+            	<ul class="nav navbar-nav">
+                  <!-- START User avatar toggle-->
+                  <li>
+                     <a href="${pageContext.request.contextPath}/app" title="Dashboard">Dashboard</a>
+                  </li>
+                  <li>
+                     <a href="${pageContext.request.contextPath}/app/groups" title="All Groups">All Groups</a>
+                  </li>
+               </ul>
               <!-- START Right Navbar-->
               <ul class="nav navbar-nav navbar-right">
                   <!-- START Alert menu-->
@@ -101,10 +110,10 @@
          	 		<fmt:formatNumber value="${userGroup[0].balance}" type="currency" />
          	 	</h1>
          	  <div class="mt-lg list-group text-center mb-sm">
-	           <a href="${pageContext.request.contextPath}/groups/${userGroup[0].id}/add" class="pl-lg list-group-item">
+	           <a href="${pageContext.request.contextPath}/app/groups/${userGroup[0].id}/add" class="pl-lg list-group-item">
 	           	Add Money
 	           </a>
-	           <a href="${pageContext.request.contextPath}/groups/${userGroup[0].id}/withdraw" class="pl-lg list-group-item">
+	           <a href="${pageContext.request.contextPath}/app/groups/${userGroup[0].id}/withdraw" class="pl-lg list-group-item">
 	           	Withdraw Money
 	           </a>
 	           <a href="#" class="pl-lg list-group-item">
@@ -121,13 +130,13 @@
 	                     <span>${userGroup[0].group.name}</span>
 	                  </li> 
 	                  <li class=" ">
-	                     <a href="${pageContext.request.contextPath}/groups/${userGroup[0].id}" title="${userGroup[0].group.name} Snapshot">
+	                     <a href="${pageContext.request.contextPath}/app/groups/${userGroup[0].id}" title="${userGroup[0].group.name} Snapshot">
 	                        <em class="fa fa-camera"></em>
 	                        <span>Snapshot</span>
 	                     </a>
 	                  </li>
 	                  <li class=" ">
-	                     <a href="${pageContext.request.contextPath}/groups/${userGroup[0].id}/transactions" title="${userGroup[0].group.name} Transactions">
+	                     <a href="${pageContext.request.contextPath}/app/groups/${userGroup[0].id}/transactions" title="${userGroup[0].group.name} Transactions">
 	                        <em class="fa fa-money"></em>
 	                        <span>Transactions</span>
 	                     </a>
@@ -150,14 +159,14 @@
                      <span>Groups</span>
                   </li>
                   <li class=" ">
-                     <a href="${pageContext.request.contextPath}/groups/create" title="New Group">
+                     <a href="${pageContext.request.contextPath}/app/groups/create" title="New Group">
                         <em class="fa fa-plus"></em>
                         <span>New Group</span>
                      </a>
                   </li>
                   <c:forEach items="${leftNavGroups}" var="userGroup" varStatus="count">
                   <li class=" ">
-                     <a href="${pageContext.request.contextPath}/groups/${userGroup.id}" title="${userGroup.group.name}">
+                     <a href="${pageContext.request.contextPath}/app/groups/${userGroup.id}" title="${userGroup.group.name}">
                         <em class="fa fa-group"></em>
                         <span>${userGroup.group.name}</span>
                      </a>

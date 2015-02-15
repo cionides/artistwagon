@@ -24,7 +24,7 @@ public class TransactionController extends BaseController {
 	@Autowired
 	TransactionService transactionService;
 	
-	@RequestMapping(value = {"/groups/{groupId}/transactions"}, method = RequestMethod.GET)
+	@RequestMapping(value = {"app/groups/{groupId}/transactions"}, method = RequestMethod.GET)
 	public ModelAndView allTransactions(@PathVariable int groupId) {
  
 		ModelAndView model = new ModelAndView();
@@ -42,7 +42,7 @@ public class TransactionController extends BaseController {
  
 	}
 	
-	@RequestMapping(value = {"/groups/{groupId}/transactions/{transactionId}/split"}, method = RequestMethod.GET)
+	@RequestMapping(value = {"app/groups/{groupId}/transactions/{transactionId}/split"}, method = RequestMethod.GET)
 	public ModelAndView splitTransaction(@PathVariable int groupId, @PathVariable int transactionId) {
  
 		ModelAndView model = new ModelAndView();
@@ -60,7 +60,7 @@ public class TransactionController extends BaseController {
  
 	}
 	
-	@RequestMapping(value = {"/groups/{userGroupId}/withdraw"}, method = RequestMethod.GET)
+	@RequestMapping(value = {"app/groups/{userGroupId}/withdraw"}, method = RequestMethod.GET)
 	public ModelAndView viewWithdrawMoney(@PathVariable int userGroupId) {
  
 		ModelAndView model = new ModelAndView();
@@ -75,7 +75,7 @@ public class TransactionController extends BaseController {
  
 	}
 	
-	@RequestMapping(value = {"/groups/{userGroupId}/withdraw/submit"}, method = RequestMethod.GET)
+	@RequestMapping(value = {"app/groups/{userGroupId}/withdraw/submit"}, method = RequestMethod.GET)
 	public ModelAndView withdrawMoney(@PathVariable int userGroupId) {
  
 		ModelAndView model = new ModelAndView();
@@ -90,7 +90,7 @@ public class TransactionController extends BaseController {
  
 	}
 	
-	@RequestMapping(value = {"/groups/{userGroupId}/add"}, method = RequestMethod.GET)
+	@RequestMapping(value = {"app/groups/{userGroupId}/add"}, method = RequestMethod.GET)
 	public ModelAndView viewAddMoney(@PathVariable int userGroupId) {
  
 		ModelAndView model = new ModelAndView();
@@ -105,7 +105,7 @@ public class TransactionController extends BaseController {
  
 	}
 	
-	@RequestMapping(value = {"/groups/{userGroupId}/add/submit"}, method = RequestMethod.GET)
+	@RequestMapping(value = {"app/groups/{userGroupId}/add/submit"}, method = RequestMethod.GET)
 	public ModelAndView addMoney(@PathVariable int userGroupId) {
  
 		ModelAndView model = new ModelAndView();
