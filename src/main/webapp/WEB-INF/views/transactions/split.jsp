@@ -21,28 +21,18 @@
                  <div class="form-group">
                     <label class="col-sm-2 control-label mr-lg">Select Members</label>
                     <div class="col-sm-8">
+                   	<c:forEach items="${groupMembers}" var="groupMember">
 			                <label class="checkbox pb-sm">
 			                   <input id="roundedcheckbox20" type="checkbox" />
-			                   Nick Adelberger
+			                   ${groupMember.user.fullName}
 			                </label>
-			                <label class="checkbox pb-sm">
-			                   <input id="roundedcheckbox20" type="checkbox" />
-			                   Adam Michaels
-			                </label>
-			                <label class="checkbox pb-sm">
-			                   <input id="roundedcheckbox20" type="checkbox" />
-			                   Laura Savage
-			                </label>
-			                <label class="checkbox">
-			                   <input id="roundedcheckbox20" type="checkbox" />
-			                   Doug Pawlik
-			                </label>
+		                </c:forEach>
         						</div>
                  </div>
                 </fieldset>
                 <fieldset>
                  <div class="form-group">
-                    <label class="col-sm-2 control-label">Split Evenly?</label>
+                    <label class="col-sm-2 control-label">Split Evenly</label>
                     <div class="col-sm-10">
                        <div class="radio pb-sm">
                           <label>
@@ -57,7 +47,7 @@
                     </div>
                  </div>
               </fieldset>
-            	 <a href="${pageContext.request.contextPath}/app/groups/${userGroup[0].id}/transactions" class="btn btn-primary pull-right">Submit</a>
+            	 <a href="${pageContext.request.contextPath}/bank/bands/${userGroup[0].id}/transactions" class="btn btn-primary pull-right">Submit</a>
            </form>
         </div>
      </div>

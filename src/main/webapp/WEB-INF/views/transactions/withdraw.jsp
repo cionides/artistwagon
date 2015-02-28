@@ -1,10 +1,16 @@
 <%@include file="/WEB-INF/views/layout/include.jspf"%>
 <%@include file="/WEB-INF/views/layout/header.jspf"%>
 
-<h3>Withdraw Money <small>${userGroup[0].group.name}</small></h3>
+<h3>
+	<div class="col-lg-12 clearfix p0">
+	<span class="pull-left">${userGroup[0].group.name} <a href="#">Change Band</a></span>
+	<span class="pull-right">Balance: <fmt:formatNumber value="${userGroup[0].balance}" type="currency" /> </span>
+	</div>
+	<small>Withdraw Money</small>
+</h3>
 <div class="row">
    <div class="col-lg-12">
-      <form action="${pageContext.request.contextPath}/app/groups/${userGroup[0].id}/withdraw/submit" class="form-horizontal">
+      <form action="${pageContext.request.contextPath}/bank/bands/${userGroup[0].id}/withdraw/submit" class="form-horizontal">
       	<fieldset>
       		<div class="form-group-lg">
 	          <label class="col-lg-2 control-label">Bank Account</label>

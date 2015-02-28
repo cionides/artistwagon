@@ -9,14 +9,15 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "USER_GROUP")
+@Table(name = "USER_BAND")
 public class UserGroup {
 	
 	private Integer id;
-	private String username;
+	private User user;
 	private Group group;
 	private Double balance;
 	
@@ -24,11 +25,11 @@ public class UserGroup {
 		
 	}
 	
-	public UserGroup(int id, String username, Group group,
+	public UserGroup(int id, String username, User user, Group group,
 			Double balance) {
 		this.id = id;
 		this.group = group;
-		this.username = username;
+		this.user = user;
 		this.balance = balance;
 	}
 	
@@ -62,13 +63,14 @@ public class UserGroup {
 	public void setBalance(Double balance) {
 		this.balance = balance;
 	}
-
-	@Column(name = "USERNAME")
-	public String getUsername() {
-		return username;
+	
+	@OneToOne(cascade={CascadeType.ALL})
+	@JoinColumn(name = "USERNAME")
+	public User getUser() {
+		return user;
 	}
 
-	public void setUsername(String username) {
-		this.username = username;
+	public void setUser(User user) {
+		this.user = user;
 	}
 }

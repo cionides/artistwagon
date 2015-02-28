@@ -41,5 +41,12 @@ public class GroupServiceImpl implements GroupService {
 		return groupDao.getUserGroupById(id);
 
 	}
+	
+	@Transactional(readOnly=true)
+	public List<UserGroup> getGroupMembers(int groupId) {
+		
+		return groupDao.getGroupMembers(groupId);
+		
+	}
 
 }

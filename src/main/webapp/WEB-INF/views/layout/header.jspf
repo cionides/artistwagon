@@ -20,7 +20,6 @@
    <!-- =============== PAGE VENDOR STYLES ===============-->
    <!-- =============== APP STYLES ===============-->
    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/app/css/app.css" id="maincss">
-   <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/app/css/custom/styles.css">
 </head>
 
 <body>
@@ -31,7 +30,7 @@
          <nav role="navigation" class="navbar topnavbar">
             <!-- START navbar header-->
             <div class="navbar-header">
-               <a href="${pageContext.request.contextPath}/app" class="navbar-brand">
+               <a href="${pageContext.request.contextPath}/bank" class="navbar-brand">
                   <div class="brand-logo">
                      <h2>Artist Wagon</h2>
                   </div>
@@ -43,14 +42,20 @@
             <!-- END navbar header-->
             <!-- START Nav wrapper-->
             <div class="nav-wrapper">
-            	<ul class="nav navbar-nav">
+            	<ul class="nav navbar-nav ml-xl">
                   <!-- START User avatar toggle-->
                   <li>
-                     <a href="${pageContext.request.contextPath}/app" title="Dashboard">Dashboard</a>
+                     <a href="${pageContext.request.contextPath}/bank/bands/${userGroup[0].id}" title="Dashboard">Dashboard</a>
                   </li>
                   <li>
-                     <a href="${pageContext.request.contextPath}/app/groups" title="All Groups">All Groups</a>
+                     <a href="${pageContext.request.contextPath}/bank/bands/${userGroup[0].id}/transactions" title="Transactions">Transactions</a>
                   </li>
+                  <li>
+                     <a href="${pageContext.request.contextPath}/bank/bands/${userGroup[0].id}/members" title="Band Members">Band Members</a>
+                  </li>
+                  <li>
+                  	<a data-toggle="collapse" href="#transferMoneyDiv">Transfer Money</a>
+									</li>
                </ul>
               <!-- START Right Navbar-->
               <ul class="nav navbar-nav navbar-right">
@@ -100,426 +105,67 @@
          </nav>
          <!-- END Top Navbar-->
       </header>
-      <!-- sidebar-->
-      <aside class="aside">
-         <!-- START Sidebar (left)-->
-         <div class="aside-inner">
-         		<c:if test="${not empty userGroup}">
-         	 	<h3 class="text-center">Balance</h3>
-         	 	<h1 class="text-center mt-sm">
-         	 		<fmt:formatNumber value="${userGroup[0].balance}" type="currency" />
-         	 	</h1>
-         	  <div class="mt-lg list-group text-center mb-sm">
-	           <a href="${pageContext.request.contextPath}/app/groups/${userGroup[0].id}/add" class="pl-lg list-group-item">
-	           	Add Money
-	           </a>
-	           <a href="${pageContext.request.contextPath}/app/groups/${userGroup[0].id}/withdraw" class="pl-lg list-group-item">
-	           	Withdraw Money
-	           </a>
-	           <a href="#" class="pl-lg list-group-item">
-	           	Request Money
-	           </a>
-            </div>
-         	 	</c:if>
-            <nav class="sidebar">
-               <!-- START sidebar nav-->
-               <ul class="nav">
-                  <!-- Iterates over all sidebar items-->
-                  <c:if test="${not empty userGroup}">
-	                  <li class="nav-heading ">
-	                     <span>${userGroup[0].group.name}</span>
-	                  </li> 
-	                  <li class=" ">
-	                     <a href="${pageContext.request.contextPath}/app/groups/${userGroup[0].id}" title="${userGroup[0].group.name} Snapshot">
-	                        <em class="fa fa-camera"></em>
-	                        <span>Snapshot</span>
-	                     </a>
-	                  </li>
-	                  <li class=" ">
-	                     <a href="${pageContext.request.contextPath}/app/groups/${userGroup[0].id}/transactions" title="${userGroup[0].group.name} Transactions">
-	                        <em class="fa fa-money"></em>
-	                        <span>Transactions</span>
-	                     </a>
-	                  </li>
-	                  <li class=" ">
-	                     <a href="#" title="${userGroup[0].group.name} Members">
-	                        <em class="fa fa-group"></em>
-	                        <span>Members</span>
-	                     </a>
-	                  </li>
-	                  <li class=" ">
-	                     <a href="#" title="${userGroup[0].group.name} Tax Documents">
-	                        <em class="fa fa-institution"></em>
-	                        <span>Tax Documents</span>
-	                     </a>
-	                  </li>
-                  </c:if>
-                  <c:if test="${empty userGroup}">
-                  <li class="nav-heading ">
-                     <span>Groups</span>
-                  </li>
-                  <li class=" ">
-                     <a href="${pageContext.request.contextPath}/app/groups/create" title="New Group">
-                        <em class="fa fa-plus"></em>
-                        <span>New Group</span>
-                     </a>
-                  </li>
-                  <c:forEach items="${leftNavGroups}" var="userGroup" varStatus="count">
-                  <li class=" ">
-                     <a href="${pageContext.request.contextPath}/app/groups/${userGroup.id}" title="${userGroup.group.name}">
-                        <em class="fa fa-group"></em>
-                        <span>${userGroup.group.name}</span>
-                     </a>
-                  </li>
-                 </c:forEach>
-                 </c:if>
-               </ul>
-               <!-- END sidebar nav-->
-            </nav>
-         </div>
-         <!-- END Sidebar (left)-->
-      </aside>
-      <!-- offsidebar-->
-      <aside class="offsidebar">
-         <!-- START Off Sidebar (right)-->
-         <nav>
-            <div role="tabpanel">
-               <!-- Nav tabs-->
-               <ul role="tablist" class="nav nav-tabs nav-justified">
-                  <li role="presentation" class="active">
-                     <a href="#app-settings" aria-controls="app-settings" role="tab" data-toggle="tab">
-                        <em class="icon-equalizer fa-lg"></em>
-                     </a>
-                  </li>
-                  <li role="presentation">
-                     <a href="#app-chat" aria-controls="app-chat" role="tab" data-toggle="tab">
-                        <em class="icon-users fa-lg"></em>
-                     </a>
-                  </li>
-               </ul>
-               <!-- Tab panes-->
-               <div class="tab-content">
-                  <div id="app-settings" role="tabpanel" class="tab-pane fade in active">
-                     <h3 class="text-center text-thin">Settings</h3>
-                     <div class="p">
-                        <h4 class="text-muted text-thin">Themes</h4>
-                        <div class="table-grid mb">
-                           <div class="col mb">
-                              <div class="setting-color">
-                                 <label data-load-css="css/theme-a.css">
-                                    <input type="radio" name="setting-theme" checked="checked">
-                                    <span class="icon-check"></span>
-                                    <span class="split">
-                                       <span class="color bg-info"></span>
-                                       <span class="color bg-info-light"></span>
-                                    </span>
-                                    <span class="color bg-white"></span>
-                                 </label>
-                              </div>
-                           </div>
-                           <div class="col mb">
-                              <div class="setting-color">
-                                 <label data-load-css="css/theme-b.css">
-                                    <input type="radio" name="setting-theme">
-                                    <span class="icon-check"></span>
-                                    <span class="split">
-                                       <span class="color bg-green"></span>
-                                       <span class="color bg-green-light"></span>
-                                    </span>
-                                    <span class="color bg-white"></span>
-                                 </label>
-                              </div>
-                           </div>
-                           <div class="col mb">
-                              <div class="setting-color">
-                                 <label data-load-css="css/theme-c.css">
-                                    <input type="radio" name="setting-theme">
-                                    <span class="icon-check"></span>
-                                    <span class="split">
-                                       <span class="color bg-purple"></span>
-                                       <span class="color bg-purple-light"></span>
-                                    </span>
-                                    <span class="color bg-white"></span>
-                                 </label>
-                              </div>
-                           </div>
-                           <div class="col mb">
-                              <div class="setting-color">
-                                 <label data-load-css="css/theme-d.css">
-                                    <input type="radio" name="setting-theme">
-                                    <span class="icon-check"></span>
-                                    <span class="split">
-                                       <span class="color bg-danger"></span>
-                                       <span class="color bg-danger-light"></span>
-                                    </span>
-                                    <span class="color bg-white"></span>
-                                 </label>
-                              </div>
-                           </div>
-                        </div>
-                        <div class="table-grid mb">
-                           <div class="col mb">
-                              <div class="setting-color">
-                                 <label data-load-css="css/theme-e.css">
-                                    <input type="radio" name="setting-theme">
-                                    <span class="icon-check"></span>
-                                    <span class="split">
-                                       <span class="color bg-info-dark"></span>
-                                       <span class="color bg-info"></span>
-                                    </span>
-                                    <span class="color bg-gray-dark"></span>
-                                 </label>
-                              </div>
-                           </div>
-                           <div class="col mb">
-                              <div class="setting-color">
-                                 <label data-load-css="css/theme-f.css">
-                                    <input type="radio" name="setting-theme">
-                                    <span class="icon-check"></span>
-                                    <span class="split">
-                                       <span class="color bg-green-dark"></span>
-                                       <span class="color bg-green"></span>
-                                    </span>
-                                    <span class="color bg-gray-dark"></span>
-                                 </label>
-                              </div>
-                           </div>
-                           <div class="col mb">
-                              <div class="setting-color">
-                                 <label data-load-css="css/theme-g.css">
-                                    <input type="radio" name="setting-theme">
-                                    <span class="icon-check"></span>
-                                    <span class="split">
-                                       <span class="color bg-purple-dark"></span>
-                                       <span class="color bg-purple"></span>
-                                    </span>
-                                    <span class="color bg-gray-dark"></span>
-                                 </label>
-                              </div>
-                           </div>
-                           <div class="col mb">
-                              <div class="setting-color">
-                                 <label data-load-css="css/theme-h.css">
-                                    <input type="radio" name="setting-theme">
-                                    <span class="icon-check"></span>
-                                    <span class="split">
-                                       <span class="color bg-danger-dark"></span>
-                                       <span class="color bg-danger"></span>
-                                    </span>
-                                    <span class="color bg-gray-dark"></span>
-                                 </label>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                     <div class="p">
-                        <h4 class="text-muted text-thin">Layout</h4>
-                        <div class="clearfix">
-                           <p class="pull-left">Fixed</p>
-                           <div class="pull-right">
-                              <label class="switch">
-                                 <input id="chk-fixed" type="checkbox" data-toggle-state="layout-fixed">
-                                 <span></span>
-                              </label>
-                           </div>
-                        </div>
-                        <div class="clearfix">
-                           <p class="pull-left">Collapsed</p>
-                           <div class="pull-right">
-                              <label class="switch">
-                                 <input id="chk-collapsed" type="checkbox" data-toggle-state="aside-collapsed">
-                                 <span></span>
-                              </label>
-                           </div>
-                        </div>
-                        <div class="clearfix">
-                           <p class="pull-left">Boxed</p>
-                           <div class="pull-right">
-                              <label class="switch">
-                                 <input id="chk-boxed" type="checkbox" data-toggle-state="layout-boxed">
-                                 <span></span>
-                              </label>
-                           </div>
-                        </div>
-                        <div class="clearfix">
-                           <p class="pull-left">RTL</p>
-                           <div class="pull-right">
-                              <label class="switch">
-                                 <input id="chk-rtl" type="checkbox">
-                                 <span></span>
-                              </label>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-                  <div id="app-chat" role="tabpanel" class="tab-pane fade">
-                     <h3 class="text-center text-thin">Connections</h3>
-                     <ul class="nav">
-                        <!-- START list title-->
-                        <li class="p">
-                           <small class="text-muted">ONLINE</small>
-                        </li>
-                        <!-- END list title-->
-                        <li>
-                           <!-- START User status-->
-                           <a href="#" class="media-box p mt0">
-                              <span class="pull-right">
-                                 <span class="circle circle-success circle-lg"></span>
-                              </span>
-                              <span class="pull-left">
-                                 <!-- Contact avatar-->
-                                 <img src="${pageContext.request.contextPath}/assets/app/img/user/05.jpg" alt="Image" class="media-box-object assets/img-circle thumb48">
-                              </span>
-                              <!-- Contact info-->
-                              <span class="media-box-body">
-                                 <span class="media-box-heading">
-                                    <strong>Juan Sims</strong>
-                                    <br>
-                                    <small class="text-muted">Designeer</small>
-                                 </span>
-                              </span>
-                           </a>
-                           <!-- END User status-->
-                           <!-- START User status-->
-                           <a href="#" class="media-box p mt0">
-                              <span class="pull-right">
-                                 <span class="circle circle-success circle-lg"></span>
-                              </span>
-                              <span class="pull-left">
-                                 <!-- Contact avatar-->
-                                 <img src="${pageContext.request.contextPath}/assets/app/img/user/06.jpg" alt="Image" class="media-box-object assets/img-circle thumb48">
-                              </span>
-                              <!-- Contact info-->
-                              <span class="media-box-body">
-                                 <span class="media-box-heading">
-                                    <strong>Maureen Jenkins</strong>
-                                    <br>
-                                    <small class="text-muted">Designeer</small>
-                                 </span>
-                              </span>
-                           </a>
-                           <!-- END User status-->
-                           <!-- START User status-->
-                           <a href="#" class="media-box p mt0">
-                              <span class="pull-right">
-                                 <span class="circle circle-danger circle-lg"></span>
-                              </span>
-                              <span class="pull-left">
-                                 <!-- Contact avatar-->
-                                 <img src="${pageContext.request.contextPath}/assets/app/img/user/07.jpg" alt="Image" class="media-box-object assets/img-circle thumb48">
-                              </span>
-                              <!-- Contact info-->
-                              <span class="media-box-body">
-                                 <span class="media-box-heading">
-                                    <strong>Billie Dunn</strong>
-                                    <br>
-                                    <small class="text-muted">Designeer</small>
-                                 </span>
-                              </span>
-                           </a>
-                           <!-- END User status-->
-                           <!-- START User status-->
-                           <a href="#" class="media-box p mt0">
-                              <span class="pull-right">
-                                 <span class="circle circle-warning circle-lg"></span>
-                              </span>
-                              <span class="pull-left">
-                                 <!-- Contact avatar-->
-                                 <img src="${pageContext.request.contextPath}/assets/app/img/user/08.jpg" alt="Image" class="media-box-object assets/img-circle thumb48">
-                              </span>
-                              <!-- Contact info-->
-                              <span class="media-box-body">
-                                 <span class="media-box-heading">
-                                    <strong>Tomothy Roberts</strong>
-                                    <br>
-                                    <small class="text-muted">Designer</small>
-                                 </span>
-                              </span>
-                           </a>
-                           <!-- END User status-->
-                        </li>
-                        <!-- START list title-->
-                        <li class="p">
-                           <small class="text-muted">OFFLINE</small>
-                        </li>
-                        <!-- END list title-->
-                        <li>
-                           <!-- START User status-->
-                           <a href="#" class="media-box p mt0">
-                              <span class="pull-right">
-                                 <span class="circle circle-lg"></span>
-                              </span>
-                              <span class="pull-left">
-                                 <!-- Contact avatar-->
-                                 <img src="${pageContext.request.contextPath}/assets/app/img/user/09.jpg" alt="Image" class="media-box-object assets/img-circle thumb48">
-                              </span>
-                              <!-- Contact info-->
-                              <span class="media-box-body">
-                                 <span class="media-box-heading">
-                                    <strong>Lawrence Robinson</strong>
-                                    <br>
-                                    <small class="text-muted">Developer</small>
-                                 </span>
-                              </span>
-                           </a>
-                           <!-- END User status-->
-                           <!-- START User status-->
-                           <a href="#" class="media-box p mt0">
-                              <span class="pull-right">
-                                 <span class="circle circle-lg"></span>
-                              </span>
-                              <span class="pull-left">
-                                 <!-- Contact avatar-->
-                                 <img src="${pageContext.request.contextPath}/assets/app/img/user/10.jpg" alt="Image" class="media-box-object assets/img-circle thumb48">
-                              </span>
-                              <!-- Contact info-->
-                              <span class="media-box-body">
-                                 <span class="media-box-heading">
-                                    <strong>Tyrone Owens</strong>
-                                    <br>
-                                    <small class="text-muted">Designer</small>
-                                 </span>
-                              </span>
-                           </a>
-                           <!-- END User status-->
-                        </li>
-                        <li>
-                           <div class="p-lg text-center">
-                              <!-- Optional link to list more users-->
-                              <a href="#" title="See more contacts" class="btn btn-purple btn-sm">
-                                 <strong>Load more..</strong>
-                              </a>
-                           </div>
-                        </li>
-                     </ul>
-                     <!-- Extra items-->
-                     <div class="p">
-                        <p>
-                           <small class="text-muted">Tasks completion</small>
-                        </p>
-                        <div class="progress progress-xs m0">
-                           <div role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" class="progress-bar progress-bar-success progress-80">
-                              <span class="sr-only">80% Complete</span>
-                           </div>
-                        </div>
-                     </div>
-                     <div class="p">
-                        <p>
-                           <small class="text-muted">Upload quota</small>
-                        </p>
-                        <div class="progress progress-xs m0">
-                           <div role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" class="progress-bar progress-bar-warning progress-40">
-                              <span class="sr-only">40% Complete</span>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-            </div>
-         </nav>
-         <!-- END Off Sidebar (right)-->
-      </aside>
       <!-- Main section-->
+			<div class="collapse" id="transferMoneyDiv">
+			  <div class="container">
+			  	<div class="col-lg-3">
+			  		<a href="${pageContext.request.contextPath}/bank/bands/${userGroup[0].id}/add" title="Add Money">
+				  		<div class="panel-default">
+			          <div class="panel-body text-center mt-xl">
+		            	<p>
+		            		<i class="fa fa-plus fa-3x"></i>
+		            	</p>
+		            	<p>
+		            		Add Money
+		             	</p>
+			          </div>
+	          	</div>
+	          </a>
+			  	</div>
+			  	<div class="col-lg-3">
+			  		<a href="${pageContext.request.contextPath}/bank/bands/${userGroup[0].id}/withdraw" title="Withdraw Money">
+				  		<div class="panel-default">
+			          <div class="panel-body text-center mt-xl">
+		            	<p>
+		            		<i class="fa fa-minus fa-3x"></i>
+		            	</p>
+		            	<p>
+		            		Withdraw Money
+		             	</p>
+			          </div>
+	          	</div>
+	          </a>
+			  	</div>
+			  	<div class="col-lg-3">
+			  		<a href="${pageContext.request.contextPath}/bank/bands/${userGroup[0].id}/#" title="Request Money">
+				  		<div class="panel-default">
+			          <div class="panel-body text-center mt-xl">
+		            	<p>
+		            		<i class="fa fa-bell fa-3x"></i>
+		            	</p>
+		            	<p>
+		            		Request Money
+		             	</p>
+			          </div>
+	          	</div>
+	          </a>
+			  	</div>
+			  	<div class="col-lg-3">
+			  		<a href="${pageContext.request.contextPath}/bank/bands/${userGroup[0].id}/#" title="Request Money">
+				  		<div class="panel-default">
+			          <div class="panel-body text-center mt-xl">
+		            	<p>
+		            		<i class="fa fa-gear fa-3x"></i>
+		            	</p>
+		            	<p>
+		            		Manage Bank Accounts
+		             	</p>
+			          </div>
+	          	</div>
+	          </a>
+			  	</div>
+			  </div>
+			</div>
       <section>
          <!-- Page content-->
-         <div class="content-wrapper">
+         <div class="content-wrapper container">

@@ -13,4 +13,6 @@ public interface GroupDao {
 	
 	public List<UserGroup> getUserGroupById(int id);
 	
+	public List<UserGroup> getGroupMembers(int groupId);
+	
 }

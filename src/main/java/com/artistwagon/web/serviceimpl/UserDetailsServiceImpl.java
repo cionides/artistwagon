@@ -28,7 +28,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 	public UserDetails loadUserByUsername(String username)
 			throws UsernameNotFoundException {
 		
-		com.artistwagon.web.domain.User user = userDao.findByUserName(username);
+		com.artistwagon.web.domain.User user = userDao.getUserByUserName(username);
 		List<GrantedAuthority> authorities = 
                                       buildUserAuthority(user.getUserRole());
  

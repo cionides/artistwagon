@@ -12,5 +12,7 @@ public interface GroupService {
 	public List<UserGroup> getCurrentUsersGroups();
 
 	public List<UserGroup> getUserGroupById(int id);
+	
+	public List<UserGroup> getGroupMembers(int groupId);
  
 }

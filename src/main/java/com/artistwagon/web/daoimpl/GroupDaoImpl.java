@@ -59,4 +59,18 @@ public class GroupDaoImpl implements GroupDao {
 		return userGroup;
 	}
 
+	@SuppressWarnings("unchecked")
+	public List<UserGroup> getGroupMembers(int groupId) {
+		
+		List<UserGroup> groupMembers = new ArrayList<UserGroup>();
+		
+		Query query = sessionFactory.getCurrentSession()
+				.createQuery("From UserGroup where group_id=:groupId")
+				.setParameter("groupId", groupId);
+		
+		groupMembers = query.list();
+		
+		return groupMembers;
+	}
+
 }
