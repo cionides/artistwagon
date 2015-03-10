@@ -22,7 +22,7 @@ public class User {
  
 	private String username;
 	private String password;
-	private boolean enabled;
+	private Boolean enabled;
 	private String fullName;
 	private Set<UserRole> userRole = new HashSet<UserRole>(0);
  

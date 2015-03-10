@@ -14,5 +14,7 @@ public interface GroupService {
 	public List<UserGroup> getUserGroupById(int id);
 	
 	public List<UserGroup> getGroupMembers(int groupId);
+	
+	public List<UserGroup> getActiveBand();
  
 }

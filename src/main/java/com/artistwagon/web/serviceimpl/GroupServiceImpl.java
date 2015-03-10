@@ -48,5 +48,14 @@ public class GroupServiceImpl implements GroupService {
 		return groupDao.getGroupMembers(groupId);
 		
 	}
+	
+	@Transactional(readOnly=true)
+	public List<UserGroup> getActiveBand() {
+				
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    String username = auth.getName();
+		
+		return groupDao.getActiveBand(username);
+	}
 
 }

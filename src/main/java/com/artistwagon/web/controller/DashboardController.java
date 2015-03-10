@@ -1,5 +1,7 @@
 package com.artistwagon.web.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -8,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.artistwagon.web.domain.UserGroup;
 import com.artistwagon.web.service.GroupService;
 
 @Controller
@@ -16,13 +19,14 @@ public class DashboardController extends BaseController {
 	@Autowired
 	GroupService groupService;
 	
-	@RequestMapping(value = {"/", "/bank"}, method = RequestMethod.GET)
-	public ModelAndView index() {
+	@RequestMapping(value = {"/bank/dashboard"}, method = RequestMethod.GET)
+	public ModelAndView dashboard() {
  
 		ModelAndView model = new ModelAndView();
 		model.setViewName("dashboard");
-				
-		model.addObject("leftNavGroups", groupService.getCurrentUsersGroups());
+		
+		List<UserGroup> userBand = groupService.getUserGroupById(groupService.getActiveBand().get(0).getId());
+		model.addObject("userBand", userBand);
 		
 		return model;
  

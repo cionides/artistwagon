@@ -15,4 +15,6 @@ public interface GroupDao {
 	
 	public List<UserGroup> getGroupMembers(int groupId);
 	
+	public List<UserGroup> getActiveBand(String username);
+	
 }

@@ -72,5 +72,19 @@ public class GroupDaoImpl implements GroupDao {
 		
 		return groupMembers;
 	}
+	
+	@SuppressWarnings("unchecked")
+	public List<UserGroup> getActiveBand(String username) {
+		
+		List<UserGroup> activeBand = new ArrayList<UserGroup>();
+		
+		Query query = sessionFactory.getCurrentSession()
+				.createQuery("From UserGroup where username=:username AND isActive=1")
+				.setParameter("username", username);
+		
+		activeBand = query.list();
+		
+		return activeBand;
+	}
 
 }

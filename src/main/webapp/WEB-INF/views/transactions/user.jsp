@@ -3,8 +3,8 @@
 
 <h3>
 	<div class="col-lg-12 clearfix p0">
-	<span class="pull-left">${userGroup[0].group.name} <a href="#">Change Band</a></span>
-	<span class="pull-right">Balance: <fmt:formatNumber value="${userGroup[0].balance}" type="currency" /> </span>
+	<span class="pull-left">${userBand[0].group.name} <a href="#">Change Band</a></span>
+	<span class="pull-right">Balance: <fmt:formatNumber value="${userBand[0].balance}" type="currency" /> </span>
 	</div>
 	<small>Transactions</small>
 </h3>
@@ -38,7 +38,7 @@
         			</h4>
         		</div>
         		<div class="col-lg-2">
-        			<a href="${pageContext.request.contextPath}/bank/bands/${userGroup[0].id}/transactions/${transaction.id}/split" class="btn btn-block btn-primary btn-lg mt-sm">Split ${transaction.type}</a>
+        			<a href="${pageContext.request.contextPath}/bank/bands/${userBand[0].id}/transactions/${transaction.id}/split" class="btn btn-block btn-primary btn-lg mt-sm">Split ${transaction.type}</a>
         		</div>
         	</div>
 		   </c:forEach>
@@ -64,7 +64,7 @@
         			</h4>
         		</div>
         		<div class="col-lg-2">
-        			<a href="${pageContext.request.contextPath}/bank/bands/${userGroup[0].id}/transactions/${transaction.id}/split" class="btn btn-block btn-primary btn-lg mt-sm">Split ${transaction.type}</a>
+        			<a href="${pageContext.request.contextPath}/bank/bands/${userBand[0].id}/transactions/${transaction.id}/split" class="btn btn-block btn-primary btn-lg mt-sm">Split ${transaction.type}</a>
         		</div>
         	</div>
 		   </c:forEach>

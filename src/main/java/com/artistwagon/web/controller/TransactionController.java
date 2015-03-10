@@ -34,8 +34,8 @@ public class TransactionController extends BaseController {
 		ModelAndView model = new ModelAndView();
 		model.setViewName("transactions/user");
 		
-		List<UserGroup> userGroup = groupService.getUserGroupById(groupId);
-		model.addObject("userGroup", userGroup);
+		List<UserGroup> userBand = groupService.getUserGroupById(groupId);
+		model.addObject("userBand", userBand);
 		
 		List<Transaction> transactions = transactionService.getTransactionsForUserGroup(groupId);
 		
@@ -53,8 +53,6 @@ public class TransactionController extends BaseController {
 		model.addObject("pendingTransactions", pendingTransactions);
 		model.addObject("completeTransactions", completeTransactions);
 		
-		model.addObject("leftNavGroups", groupService.getCurrentUsersGroups());
-		
 		return model;
  
 	}
@@ -68,73 +66,63 @@ public class TransactionController extends BaseController {
 		List<Transaction> transaction = transactionService.getGroupTransactionById(transactionId);
 		model.addObject("transaction", transaction);
 		
-		List<UserGroup> userGroup = groupService.getUserGroupById(groupId);
-		model.addObject("userGroup", userGroup);
+		List<UserGroup> userBand = groupService.getUserGroupById(groupId);
+		model.addObject("userBand", userBand);
 		
-		List<UserGroup> groupMembers = groupService.getGroupMembers(userGroup.get(0).getGroup().getId());
+		List<UserGroup> groupMembers = groupService.getGroupMembers(userBand.get(0).getGroup().getId());
 		model.addObject("groupMembers", groupMembers);
-		
-		model.addObject("leftNavGroups", groupService.getCurrentUsersGroups());
 		
 		return model;
  
 	}
 	
-	@RequestMapping(value = {"bank/bands/{userGroupId}/withdraw"}, method = RequestMethod.GET)
-	public ModelAndView viewWithdrawMoney(@PathVariable int userGroupId) {
+	@RequestMapping(value = {"bank/bands/{userBandId}/withdraw"}, method = RequestMethod.GET)
+	public ModelAndView viewWithdrawMoney(@PathVariable int userBandId) {
  
 		ModelAndView model = new ModelAndView();
 		model.setViewName("transactions/withdraw");
 		
-		List<UserGroup> userGroup = groupService.getUserGroupById(userGroupId);
-		model.addObject("userGroup", userGroup);
-		
-		model.addObject("leftNavGroups", groupService.getCurrentUsersGroups());
+		List<UserGroup> userBand = groupService.getUserGroupById(userBandId);
+		model.addObject("userBand", userBand);
 		
 		return model;
  
 	}
 	
-	@RequestMapping(value = {"bank/bands/{userGroupId}/withdraw/submit"}, method = RequestMethod.GET)
-	public ModelAndView withdrawMoney(@PathVariable int userGroupId) {
+	@RequestMapping(value = {"bank/bands/{userBandId}/withdraw/submit"}, method = RequestMethod.GET)
+	public ModelAndView withdrawMoney(@PathVariable int userBandId) {
  
 		ModelAndView model = new ModelAndView();
 		model.setViewName("group/snapshot");
 		
-		List<UserGroup> userGroup = groupService.getUserGroupById(userGroupId);
-		model.addObject("userGroup", userGroup);
-		
-		model.addObject("leftNavGroups", groupService.getCurrentUsersGroups());
+		List<UserGroup> userBand = groupService.getUserGroupById(userBandId);
+		model.addObject("userBand", userBand);
 		
 		return model;
  
 	}
 	
-	@RequestMapping(value = {"bank/bands/{userGroupId}/add"}, method = RequestMethod.GET)
-	public ModelAndView viewAddMoney(@PathVariable int userGroupId) {
+	@RequestMapping(value = {"bank/bands/{userBandId}/add"}, method = RequestMethod.GET)
+	public ModelAndView viewAddMoney(@PathVariable int userBandId) {
  
 		ModelAndView model = new ModelAndView();
 		model.setViewName("transactions/add");
 		
-		List<UserGroup> userGroup = groupService.getUserGroupById(userGroupId);
-		model.addObject("userGroup", userGroup);
-		
-		model.addObject("leftNavGroups", groupService.getCurrentUsersGroups());
-		
+		List<UserGroup> userBand = groupService.getUserGroupById(userBandId);
+		model.addObject("userBand", userBand);
+			
 		return model;
  
 	}
 	
-	@RequestMapping(value = {"bank/bands/{userGroupId}/add/submit"}, method = RequestMethod.GET)
-	public ModelAndView addMoney(@PathVariable int userGroupId) {
+	@RequestMapping(value = {"bank/bands/{userBandId}/add/submit"}, method = RequestMethod.GET)
+	public ModelAndView addMoney(@PathVariable int userBandId) {
  
 		ModelAndView model = new ModelAndView();
 		model.setViewName("group/snapshot");
 		
-		List<UserGroup> userGroup = groupService.getUserGroupById(userGroupId);
-		model.addObject("userGroup", userGroup);
-		
-		model.addObject("leftNavGroups", groupService.getCurrentUsersGroups());
+		List<UserGroup> userBand = groupService.getUserGroupById(userBandId);
+		model.addObject("userBand", userBand);
 		
 		return model;
  

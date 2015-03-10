@@ -28,25 +28,21 @@ public class BandController extends BaseController {
 //		ModelAndView model = new ModelAndView();
 //		model.setViewName("group/all");
 //		
-//		List<UserGroup> userGroups = groupService.getCurrentUsersGroups();
-//		model.addObject("userGroups", userGroups);
-//		
-//		model.addObject("leftNavGroups", groupService.getCurrentUsersGroups());
+//		List<userBand> userBands = groupService.getCurrentUsersGroups();
+//		model.addObject("userBands", userBands);
 //		
 //		return model;
 //		
 //	}
 	
-	@RequestMapping(value = {"bank/bands/{userGroupId}"}, method = RequestMethod.GET)
-	public ModelAndView viewSnapshot(@PathVariable int userGroupId) {
+	@RequestMapping(value = {"bank/bands/{userBandId}"}, method = RequestMethod.GET)
+	public ModelAndView viewSnapshot(@PathVariable int userBandId) {
 		
 		ModelAndView model = new ModelAndView();
 		model.setViewName("dashboard");
 		
-		List<UserGroup> userGroup = groupService.getUserGroupById(userGroupId);
-		model.addObject("userGroup", userGroup);
-		
-		model.addObject("leftNavGroups", groupService.getCurrentUsersGroups());
+		List<UserGroup> userBand = groupService.getUserGroupById(userBandId);
+		model.addObject("userBand", userBand);
 		
 		return model;
 		
@@ -57,8 +53,6 @@ public class BandController extends BaseController {
 //		
 //		ModelAndView model = new ModelAndView();
 //		model.setViewName("group/new");
-//				
-//		model.addObject("leftNavGroups", groupService.getCurrentUsersGroups());
 //		
 //		model.addObject("command", new Group());
 //		
@@ -69,38 +63,34 @@ public class BandController extends BaseController {
 //	@RequestMapping(value = {"bank/bands/create/save"}, method = RequestMethod.POST)
 //	public ModelAndView createGroup(@ModelAttribute("command") Group group) {
 //		
-//		UserGroup userGroup = new UserGroup();
-//		userGroup.setBalance(0.00);
-//		userGroup.setGroup(group);
+//		userBand userBand = new userBand();
+//		userBand.setBalance(0.00);
+//		userBand.setGroup(group);
 //		
 //		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-//	    userGroup.setUser(userService.getUserByUsername(auth.getName()));
+//	    userBand.setUser(userService.getUserByUsername(auth.getName()));
 //		
 //	    // TODO: Add Try/Catch around this service
-//		groupService.createGroup(userGroup);
+//		groupService.createGroup(userBand);
 //		
 //		ModelAndView model = new ModelAndView();
 //		model.setViewName("group/snapshot");
-//				
-//		model.addObject("leftNavGroups", groupService.getCurrentUsersGroups());
 //		
 //		return model;
 //		
 //	}
 	
-	@RequestMapping(value = {"bank/bands/{userGroupId}/members"})
-	public ModelAndView viewCreateGroup(@PathVariable int userGroupId) {
+	@RequestMapping(value = {"bank/bands/{userBandId}/members"})
+	public ModelAndView viewCreateGroup(@PathVariable int userBandId) {
 		
 		ModelAndView model = new ModelAndView();
 		model.setViewName("band/members");
 		
-		List<UserGroup> userGroup = groupService.getUserGroupById(userGroupId);
-		model.addObject("userGroup", userGroup);
+		List<UserGroup> userBand = groupService.getUserGroupById(userBandId);
+		model.addObject("userBand", userBand);
 		
-		List<UserGroup> groupMembers = groupService.getGroupMembers(userGroup.get(0).getGroup().getId());
+		List<UserGroup> groupMembers = groupService.getGroupMembers(userBand.get(0).getGroup().getId());
 		model.addObject("groupMembers", groupMembers);
-				
-		model.addObject("leftNavGroups", groupService.getCurrentUsersGroups());
 		
 		return model;
 		

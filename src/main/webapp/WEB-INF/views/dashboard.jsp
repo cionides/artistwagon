@@ -3,8 +3,8 @@
 
 <h3>
 	<div class="col-lg-12 clearfix p0">
-	<span class="pull-left">${userGroup[0].group.name} <a href="#">Change Band</a></span>
-	<span class="pull-right">Balance: <fmt:formatNumber value="${userGroup[0].balance}" type="currency" /> </span>
+	<span class="pull-left">${userBand[0].group.name} <a href="#">Change Band</a></span>
+	<span class="pull-right">Balance: <fmt:formatNumber value="${userBand[0].balance}" type="currency" /> </span>
 	</div>
 	<small>Dashboard</small>
 </h3>
@@ -230,7 +230,7 @@
         		</div>
         	</div>
         <div class="panel-footer clearfix">
-	        <a href="${pageContext.request.contextPath}/bank/bands/${userGroup[0].id}/transactions" class="pull-right">
+	        <a href="${pageContext.request.contextPath}/bank/bands/${userBand[0].id}/transactions" class="pull-right">
 	           View All
 	        </a>
         </div>

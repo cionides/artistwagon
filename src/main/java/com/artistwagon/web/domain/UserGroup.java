@@ -20,6 +20,7 @@ public class UserGroup {
 	private User user;
 	private Group group;
 	private Double balance;
+	private Boolean isActive;
 	
 	public UserGroup() {
 		
@@ -72,5 +73,14 @@ public class UserGroup {
 
 	public void setUser(User user) {
 		this.user = user;
+	}
+
+	@Column(name = "IS_ACTIVE")
+	public Boolean getIsActive() {
+		return isActive;
+	}
+
+	public void setIsActive(Boolean isActive) {
+		this.isActive = isActive;
 	}
 }
