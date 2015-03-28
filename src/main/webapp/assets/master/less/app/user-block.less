@@ -54,28 +54,26 @@
   }
 }
 
+// Adapt to collapsed mode
+.aside-collapsed {
 
-@media @tablet {
-  .aside-collapsed {
+  .user-block {
+    padding: 25px 0 0;
+    margin: 0;
+    text-align: center;
 
-    .user-block {
-      padding: 25px 0 0;
-      margin: 0;
-      text-align: center;
-
-      > .user-block-picture {
-        float: none;
-        margin: 0  auto;
-        width: 50px;
-        > .user-block-status {
-          display: block;
-        }
+    > .user-block-picture {
+      float: none;
+      margin: 0  auto;
+      width: 50px;
+      > .user-block-status {
+        display: block;
       }
-      .user-block-role,
-      .user-block-status,
-      .user-block-name {
-        display: none;
-      }
+    }
+    .user-block-role,
+    .user-block-status,
+    .user-block-name {
+      display: none;
     }
   }
 }

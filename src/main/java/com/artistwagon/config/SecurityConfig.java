@@ -14,15 +14,15 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-import com.artistwagon.web.domain.UserGroup;
-import com.artistwagon.web.service.GroupService;
+import com.artistwagon.web.domain.UserBand;
+import com.artistwagon.web.service.BandService;
 
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	@Autowired
-	GroupService groupService;
+	BandService groupService;
 	
 	@Autowired
 	@Qualifier("userDetailsService")

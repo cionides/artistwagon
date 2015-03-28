@@ -28,6 +28,9 @@
           }
           
         }
+        // some elements may need this when toggled class change the content size
+        // e.g. sidebar collapsed mode and jqGrid
+        $(window).resize();
 
     });
 

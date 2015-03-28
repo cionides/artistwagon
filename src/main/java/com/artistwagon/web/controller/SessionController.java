@@ -27,4 +27,14 @@ public class SessionController extends BaseController {
 		return model;
  
 	}
+	
+	@RequestMapping(value = "/register", method = RequestMethod.GET)
+	public ModelAndView register() {
+ 
+		ModelAndView model = new ModelAndView();
+		model.setViewName("register");
+ 
+		return model;
+ 
+	}
 }

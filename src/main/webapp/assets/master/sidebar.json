@@ -7,8 +7,13 @@
     },
     {
       "text": "Dashboard",
-      "href": "dashboard.html",
+      "href": "#dashboard",
       "icon": "icon-speedometer",
+      "submenu": [
+        {"text": "Dashboard v1", "href": "dashboard.html"},
+        {"text": "Dashboard v2", "href": "dashboard_v2.html" },
+        {"text": "Dashboard v3", "href": "dashboard_v3.html" }
+      ],
       "translate": "sidebar.nav.DASHBOARD"
     },
     {
@@ -17,6 +22,14 @@
       "icon": "icon-grid",
       "alert": "30",
       "translate": "sidebar.nav.WIDGETS"
+    },
+    {
+      "text": "Layouts",
+      "href": "#layout",
+      "icon": "icon-layers",
+      "submenu": [
+        {"text": "Horizontal", "href": "dashboard_h.html"}
+      ]
     },
     {
       "text": "Components",
@@ -34,6 +47,8 @@
         {"text": "Spinners",      "href": "spinners.html", "translate": "sidebar.nav.element.SPINNER" },
         {"text": "Animations",    "href": "animations.html", "translate": "sidebar.nav.element.ANIMATION" },
         {"text": "Dropdown",      "href": "dropdown-animations.html", "translate": "sidebar.nav.element.DROPDOWN" },
+        {"text": "Nestable",      "href": "nestable.html", "alert": "New" },
+        {"text": "Sortable",      "href": "sortable.html", "alert": "New" },      
         {"text": "Panels",        "href": "panels.html", "translate": "sidebar.nav.element.PANEL" },
         {"text": "Portlets",      "href": "portlets.html", "translate": "sidebar.nav.element.PORTLET" },
         {"text": "Grid",          "href": "grid.html", "translate": "sidebar.nav.element.GRID" },
@@ -52,7 +67,10 @@
       "submenu": [
         {"text": "Standard",   "href": "form-standard.html", "translate": "sidebar.nav.form.STANDARD" },
         {"text": "Extended",   "href": "form-extended.html", "translate": "sidebar.nav.form.EXTENDED" },
-        {"text": "Validation", "href": "form-validation.html", "translate": "sidebar.nav.form.VALIDATION" }
+        {"text": "Validation", "href": "form-validation.html", "translate": "sidebar.nav.form.VALIDATION" },
+        {"text": "Wizard", "href": "form-wizard.html" },
+        {"text": "Upload", "href": "form-upload.html" },
+        {"text": "xEditable", "href": "form-xeditable.html" }
       ],
       "translate": "sidebar.nav.form.FORM"
     },
@@ -62,7 +80,8 @@
       "icon": "icon-graph",
       "submenu": [
         { "text": "Flot",   "href": "chart-flot.html", "translate": "sidebar.nav.chart.FLOT" },
-        { "text": "Radial", "href": "chart-radial.html", "translate": "sidebar.nav.chart.RADIAL" }
+        { "text": "Radial", "href": "chart-radial.html", "translate": "sidebar.nav.chart.RADIAL" },
+        { "text": "Chart JS", "href": "chart-js.html"}
       ],
       "translate": "sidebar.nav.chart.CHART"
     },
@@ -73,7 +92,8 @@
       "submenu": [
         { "text": "Standard",   "href": "table-standard.html", "translate": "sidebar.nav.table.STANDARD" },
         { "text": "Extended",   "href": "table-extended.html", "translate": "sidebar.nav.table.EXTENDED" },
-        { "text": "DataTables", "href": "table-datatable.html", "translate": "sidebar.nav.table.DATATABLE" }
+        { "text": "DataTables", "href": "table-datatable.html", "translate": "sidebar.nav.table.DATATABLE" },
+        { "text": "jqGrid",     "href": "table-jqgrid.html" }
       ],
       "translate": "sidebar.nav.table.TABLE",
       "alert":"new"

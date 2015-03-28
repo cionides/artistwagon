@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.artistwagon.web.dao.TransactionDao;
-import com.artistwagon.web.domain.Group;
+import com.artistwagon.web.domain.Band;
 import com.artistwagon.web.domain.Transaction;
 
 
@@ -20,13 +20,13 @@ public class TransactionDaoImpl implements TransactionDao {
 	private SessionFactory sessionFactory;
 	
 	@SuppressWarnings("unchecked")
-	public List<Transaction> getTransactionsForUserGroup(int userGroupId) {
+	public List<Transaction> getTransactionsForUserBand(int userBandId) {
 		
 		List<Transaction> transactions = new ArrayList<Transaction>();
 		
 		Query query = sessionFactory.getCurrentSession()
 				.createQuery("From Transaction where userGroupId=:userGroupId")
-				.setParameter("userGroupId", userGroupId);
+				.setParameter("userGroupId", userBandId);
 		
 		transactions = query.list();
 		
@@ -34,7 +34,7 @@ public class TransactionDaoImpl implements TransactionDao {
 	}
 	
 	@SuppressWarnings("unchecked")
-	public List<Transaction> getGroupTransactionById(int transactionId) {
+	public List<Transaction> getBandTransactionById(int transactionId) {
 		
 		List<Transaction> transaction = new ArrayList<Transaction>();
 		

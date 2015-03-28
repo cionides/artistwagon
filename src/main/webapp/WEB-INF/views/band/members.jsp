@@ -3,27 +3,29 @@
 
 <h3>
 	<div class="col-lg-12 clearfix p0">
-	<span class="pull-left">${userBand[0].group.name} <a href="#">Change Band</a></span>
+	<span class="pull-left">Band Members</span>
 	<span class="pull-right">Balance: <fmt:formatNumber value="${userBand[0].balance}" type="currency" /> </span>
 	</div>
-	<small>Band Members</small>
+	<small>${userBand[0].band.name}</small>
 </h3>
 <div class="row">
    <div class="col-lg-12 pl0 pr0">
-	   <div class="panel panel-default panel-flat ba radius-clear animated fadeInUp">
+	   <div class="panel panel-flat radius-clear b animated fadeInUp">
 	        <div class="panel-body">
 	           <div class="table-responsive">
 	              <table class="table table-striped">
 	                 <thead>
 	                    <tr>
 	                       <th>Member Name</th>
+	                       <th>Role</th>
 	                       <th>Status</th>
 	                    </tr>
 	                 </thead>
 	                 <tbody>
-	                 <c:forEach items="${groupMembers}" var="groupMember">
+	                 <c:forEach items="${bandMembers}" var="bandMember">
 	                 	<tr>
-	                 		<td>${groupMember.user.fullName}</td>
+	                 		<td>${bandMember.user.username}</td>
+	                 		<td>Musician</td>
 	                 		<td>Active</td>
 	                 	</tr>
 									 </c:forEach>

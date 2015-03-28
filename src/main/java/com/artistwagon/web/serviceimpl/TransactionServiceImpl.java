@@ -17,16 +17,16 @@ public class TransactionServiceImpl implements TransactionService {
 	TransactionDao transactionDao;
 	
 	@Transactional(readOnly=true)
-	public List<Transaction> getTransactionsForUserGroup(int userGroupId) {
+	public List<Transaction> getTransactionsForUserBand(int userBandId) {
 		
-		return transactionDao.getTransactionsForUserGroup(userGroupId);
+		return transactionDao.getTransactionsForUserBand(userBandId);
 		
 	}
 	
 	@Transactional(readOnly=true)
-	public List<Transaction> getGroupTransactionById(int transactionId) {
+	public List<Transaction> getBandTransactionById(int transactionId) {
 		
-		return transactionDao.getGroupTransactionById(transactionId);
+		return transactionDao.getBandTransactionById(transactionId);
 		
 	}
 

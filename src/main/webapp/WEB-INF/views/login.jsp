@@ -20,7 +20,7 @@
    <!-- =============== PAGE VENDOR STYLES ===============-->
    <!-- =============== APP STYLES ===============-->
    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/app/css/app.css" id="maincss">
-   <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/app/css/custom/styles.css">
+   <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/custom/css/styles.css">
 </head>
 
 <body id="loginPage">
@@ -71,7 +71,7 @@
                   </div>
                   <button type="submit" class="btn btn-block btn-primary mt-lg">Login</button>
                </form>
-               <p class="pt-lg text-center">Need to Signup?</p><a href="register.html" class="btn btn-block btn-default">Register Now</a>
+               <p class="pt-lg text-center">Need to Signup?</p><a href="register" class="btn btn-block btn-default">Register Now</a>
             </div>
          </div>
          <!-- END panel-->
@@ -85,17 +85,27 @@
    </div>
    <!-- =============== VENDOR SCRIPTS ===============-->
    <!-- MODERNIZR-->
-   <script src="../vendor/modernizr/modernizr.js"></script>
+   <script src="${pageContext.request.contextPath}/assets/vendor/modernizr/modernizr.js"></script>
    <!-- JQUERY-->
-   <script src="../vendor/jquery/dist/jquery.js"></script>
+   <script src="${pageContext.request.contextPath}/assets/vendor/jquery/dist/jquery.js"></script>
    <!-- BOOTSTRAP-->
-   <script src="../vendor/bootstrap/dist/js/bootstrap.js"></script>
+   <script src="${pageContext.request.contextPath}/assets/vendor/bootstrap/dist/js/bootstrap.js"></script>
    <!-- STORAGE API-->
-   <script src="../vendor/jQuery-Storage-API/jquery.storageapi.js"></script>
-   <!-- PARSLEY-->
-   <script src="../vendor/parsleyjs/dist/parsley.min.js"></script>
+   <script src="${pageContext.request.contextPath}/assets/vendor/jQuery-Storage-API/jquery.storageapi.js"></script>
+   <!-- JQUERY EASING-->
+   <script src="${pageContext.request.contextPath}/assets/vendor/jquery.easing/js/jquery.easing.js"></script>
+   <!-- ANIMO-->
+   <script src="${pageContext.request.contextPath}/assets/vendor/animo.js/animo.js"></script>
+   <!-- SLIMSCROLL-->
+   <script src="${pageContext.request.contextPath}/assets/vendor/slimScroll/jquery.slimscroll.min.js"></script>
+   <!-- SCREENFULL-->
+   <script src="${pageContext.request.contextPath}/assets/vendor/screenfull/dist/screenfull.min.js"></script>
+   <!-- LOCALIZE-->
+   <script src="${pageContext.request.contextPath}/assets/vendor/jquery-localize-i18n/dist/jquery.localize.js"></script>
+
+   <!-- =============== PAGE VENDOR SCRIPTS ===============-->
    <!-- =============== APP SCRIPTS ===============-->
-   <script src="js/app.js"></script>
+   <script src="${pageContext.request.contextPath}/assets/app/js/app.js"></script>
 </body>
 
 </html>

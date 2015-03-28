@@ -1,7 +1,7 @@
 <%@include file="/WEB-INF/views/layout/include.jspf"%>
 <%@include file="/WEB-INF/views/layout/header.jspf"%>
 
-<h3>Split ${transaction[0].type} <small>${userBand[0].group.name}</small></h3>
+<h3>Split ${transaction[0].type} <small>${userBand[0].band.name}</small></h3>
 <div class="row">
    <div class="col-lg-12">
       <div class="panel panel-default">
@@ -21,10 +21,10 @@
                  <div class="form-group">
                     <label class="col-sm-2 control-label mr-lg">Select Members</label>
                     <div class="col-sm-8">
-                   	<c:forEach items="${groupMembers}" var="groupMember">
+                   	<c:forEach items="${bandMembers}" var="bandMember">
 			                <label class="checkbox pb-sm">
 			                   <input id="roundedcheckbox20" type="checkbox" />
-			                   ${groupMember.user.fullName}
+			                   ${bandMember.user.fullName}
 			                </label>
 		                </c:forEach>
         						</div>

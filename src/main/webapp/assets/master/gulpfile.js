@@ -68,6 +68,11 @@ var source = {
         files : ['jade/index.jade'],
         watch: ['jade/index.jade', hidden_files]
     },
+    partials: {
+      layout: ['jade/_*.*'],
+      views: ['jade/views/**/_*.*'],
+      pages: ['jade/pages/**/_*.*']
+    },
     views: {
         files : ['jade/views/**/*.jade'],
         watch: ['jade/views/**/*.jade']
@@ -227,26 +232,16 @@ gulp.task('bootstrap', function() {
         .pipe(gulp.dest(build.styles));
 });
 
-// JADE
-gulp.task('templates:app', function() {
-    return gulp.src(source.templates.app.files)
-        // .pipe(changed(build.templates.app, { extension: '.html' }))
-        .pipe(jade())
-        .on("error", handleError)
-        .pipe(prettify({
-            indent_char: ' ',
-            indent_size: 3,
-            unformatted: ['a', 'sub', 'sup', 'b', 'i', 'u']
-        }))
-        // .pipe(w3cjs( W3C_OPTIONS ))
-        .pipe(gulp.dest(build.templates.app))
-        ;
-});
+// JADE PAGES
+gulp.task('templates:pages', templatePagesTask() );
+gulp.task('templates:pages:forced', templatePagesTask(true) );
 
-// JADE
-gulp.task('templates:pages', function() {
+// Generate tasks to compile pages templates
+// forced: doesn't take care of changed files
+function templatePagesTask(forced) {
+  return function() {
     return gulp.src(source.templates.pages.files)
-        .pipe(changed(build.templates.pages, { extension: '.html' }))
+        .pipe(forced ? gutil.noop() : changed(build.templates.pages, { extension: '.html' }))
         .pipe(filter(function (file) {
           return !/[\/\\]_/.test(file.path) && !/[\/\\]_/.test(file.relative) && !/^_/.test(file.relative);
         }))
@@ -260,12 +255,22 @@ gulp.task('templates:pages', function() {
         // .pipe(w3cjs( W3C_OPTIONS ))
         .pipe(gulp.dest(build.templates.pages))
         ;
-});
+      };
+}
 
-// JADE
-gulp.task('templates:views', function() {
+
+
+
+// JADE VIEWS
+gulp.task('templates:views', templatesViewTask() );
+gulp.task('templates:views:forced', templatesViewTask(true) );
+
+// Generate tasks to compile view templates
+// forced: doesn't take care of changed files
+function templatesViewTask(forced) {
+  return function() {
     return gulp.src(source.templates.views.files)
-        .pipe(changed(build.templates.views, { extension: '.html' }))
+        .pipe(forced ? gutil.noop() : changed(build.templates.views, { extension: '.html' }))
         .pipe(filter(function (file) {
           return !/[\/\\]_/.test(file.path) && !/[\/\\]_/.test(file.relative) && !/^_/.test(file.relative);
         }))
@@ -281,7 +286,8 @@ gulp.task('templates:views', function() {
         // .pipe(w3cjs( W3C_OPTIONS ))
         .pipe(gulp.dest(build.templates.views))
         ;
-});
+      };
+}
 
 //---------------
 // WATCH
@@ -291,13 +297,16 @@ gulp.task('templates:views', function() {
 gulp.task('watch', function() {
   livereload.listen();
 
-  gulp.watch(source.scripts.watch,           ['scripts:app', 'scripts:demo']);
-  gulp.watch(source.styles.app.watch,        ['styles:app', 'styles:app:rtl']);
-  gulp.watch(source.styles.themes.watch,     ['styles:themes']);
-  gulp.watch(source.bootstrap.watch,         ['styles:app']); //bootstrap
-  gulp.watch(source.templates.pages.watch,   ['templates:pages']);
-  gulp.watch(source.templates.views.watch,   ['templates:views']);
-  // gulp.watch(source.templates.app.watch,     ['templates:app']);
+  gulp.watch(source.scripts.watch,            ['scripts:app', 'scripts:demo']);
+  gulp.watch(source.styles.app.watch,         ['styles:app', 'styles:app:rtl']);
+  gulp.watch(source.styles.themes.watch,      ['styles:themes']);
+  gulp.watch(source.bootstrap.watch,          ['styles:app']);
+  gulp.watch(source.templates.pages.watch,    ['templates:pages']);
+  gulp.watch(source.templates.views.watch,    ['templates:views']);
+  // Jade partials
+  gulp.watch(source.templates.partials.layout, ['templates:views:forced', 'templates:pages:forced']);
+  gulp.watch(source.templates.partials.views,  ['templates:views:forced']);
+  gulp.watch(source.templates.partials.pages,  ['templates:pages:forced']);
 
   gulp.watch([
 
@@ -327,7 +336,6 @@ gulp.task('start',[
           'styles:app',
           'styles:app:rtl',
           'styles:themes',
-          // 'templates:app',
           'templates:pages',
           'templates:views',
           'watch'

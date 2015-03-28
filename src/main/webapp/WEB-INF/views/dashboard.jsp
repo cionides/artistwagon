@@ -3,14 +3,14 @@
 
 <h3>
 	<div class="col-lg-12 clearfix p0">
-	<span class="pull-left">${userBand[0].group.name} <a href="#">Change Band</a></span>
+	<span class="pull-left">Dashboard</span>
 	<span class="pull-right">Balance: <fmt:formatNumber value="${userBand[0].balance}" type="currency" /> </span>
 	</div>
-	<small>Dashboard</small>
+	<small>${userBand[0].band.name}</small> ${user.email}
 </h3>
 <div class="row">
    <div class="col-lg-4 pl0">
-	   <div class="panel panel-default panel-flat ba mb-xl radius-clear animated fadeInUp">
+	   <div class="panel panel-flat mb-xl radius-clear animated fadeInUp">
 		   <div class="panel-heading">
 		      <div class="panel-title">Active IOU's</div>
 		   </div>
@@ -72,7 +72,7 @@
 		    </div>
    </div>
       <div class="col-lg-8 pr0">
-      <div class="panel panel-default panel-flat ba mb-xl radius-clear animated fadeInUp">
+      <div class="panel panel-flat mb-xl radius-clear animated fadeInUp">
         <div class="panel-heading">
            <div class="panel-title">Latest activities</div>
         </div>
@@ -168,7 +168,7 @@
         </div>
         <!-- END panel-footer-->
      </div>
-      <div class="panel panel-default panel-flat ba mb-xl radius-clear animated fadeInUp">
+      <div class="panel panel-flat mb-xl radius-clear animated fadeInUp">
       	<div class="panel-heading">
       		<div class="panel-title">Recent Transactions</div>
       	</div>

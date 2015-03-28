@@ -34,7 +34,7 @@
         $element.vectorMap({
           map:             opts.mapName,
           backgroundColor: opts.bgColor,
-          zoomMin:         2,
+          zoomMin:         1,
           zoomMax:         8,
           zoomOnScroll:    false,
           regionStyle: {

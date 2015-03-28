@@ -186,14 +186,13 @@ block content
             option Oakland Raiders
             option San Diego Chargers
 
-      .form-group.mb-xl
+      .form-group
         label.control-label.mb by Date
         br
-        p.input-group
+        p#datetimepicker.input-group.date
           input.form-control(type='text')
-          span.input-group-btn
-            button.btn.btn-default(type='button')
-              em.fa.fa-calendar
+          span.input-group-addon
+            span.fa.fa-calendar
 
       .form-group.mb-xl
         label.control-label.mb by Range
@@ -202,17 +201,21 @@ block content
 
       button.btn.btn-default.btn-lg Apply
 
-
 block vendor_css
   // SLIDER CTRL
   link(rel='stylesheet', href='../vendor/seiyria-bootstrap-slider/dist/css/bootstrap-slider.min.css')
   // CHOSEN
   link(rel='stylesheet', href='../vendor/chosen_v1.2.0/chosen.min.css')
-
+  // DATETIMEPICKER
+  link(rel='stylesheet', href='../vendor/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css')
 block vendor_js
   // CHOSEN
   script(src='../vendor/chosen_v1.2.0/chosen.jquery.min.js')
   // SLIDER CTRL
   script(src='../vendor/seiyria-bootstrap-slider/dist/bootstrap-slider.min.js')
-  // Demo forms
+  // MOMENT JS
+  script(src='../vendor/moment/min/moment-with-locales.min.js')
+  // DATETIMEPICKER
+  script(type='text/javascript', src='../vendor/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js')
+  // Demo
   script(src='js/demo/demo-search.js')

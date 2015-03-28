@@ -6,8 +6,8 @@ import com.artistwagon.web.domain.Transaction;
 
 public interface TransactionService {
 	
-	public List<Transaction> getTransactionsForUserGroup(int userGroupId);
+	public List<Transaction> getTransactionsForUserBand(int userBandId);
 
-	public List<Transaction> getGroupTransactionById(int transactionId);
+	public List<Transaction> getBandTransactionById(int transactionId);
 
 }

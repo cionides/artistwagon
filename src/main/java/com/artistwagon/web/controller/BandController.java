@@ -9,39 +9,26 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.artistwagon.web.domain.UserGroup;
-import com.artistwagon.web.service.GroupService;
+import com.artistwagon.web.domain.UserBand;
+import com.artistwagon.web.service.BandService;
 import com.artistwagon.web.service.UserService;
 
 @Controller
 public class BandController extends BaseController {
 	
 	@Autowired
-	GroupService groupService;
+	BandService bandService;
 	
 	@Autowired
 	UserService userService;
-	
-//	@RequestMapping(value = {"bank/bands"}, method = RequestMethod.GET)
-//	public ModelAndView viewAllGroups() {
-//		
-//		ModelAndView model = new ModelAndView();
-//		model.setViewName("group/all");
-//		
-//		List<userBand> userBands = groupService.getCurrentUsersGroups();
-//		model.addObject("userBands", userBands);
-//		
-//		return model;
-//		
-//	}
-	
+		
 	@RequestMapping(value = {"bank/bands/{userBandId}"}, method = RequestMethod.GET)
 	public ModelAndView viewSnapshot(@PathVariable int userBandId) {
 		
 		ModelAndView model = new ModelAndView();
 		model.setViewName("dashboard");
 		
-		List<UserGroup> userBand = groupService.getUserGroupById(userBandId);
+		List<UserBand> userBand = bandService.getUserBandById(userBandId);
 		model.addObject("userBand", userBand);
 		
 		return model;
@@ -81,16 +68,16 @@ public class BandController extends BaseController {
 //	}
 	
 	@RequestMapping(value = {"bank/bands/{userBandId}/members"})
-	public ModelAndView viewCreateGroup(@PathVariable int userBandId) {
+	public ModelAndView viewBandMembers(@PathVariable int userBandId) {
 		
 		ModelAndView model = new ModelAndView();
 		model.setViewName("band/members");
 		
-		List<UserGroup> userBand = groupService.getUserGroupById(userBandId);
+		List<UserBand> userBand = bandService.getUserBandById(userBandId);
 		model.addObject("userBand", userBand);
 		
-		List<UserGroup> groupMembers = groupService.getGroupMembers(userBand.get(0).getGroup().getId());
-		model.addObject("groupMembers", groupMembers);
+		List<UserBand> bandMembers = bandService.getBandMembers(userBand.get(0).getBand().getId());
+		model.addObject("bandMembers", bandMembers);
 		
 		return model;
 		

@@ -1,18 +1,12 @@
 package com.artistwagon.web.domain;
 
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
-import javax.persistence.JoinTable;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -23,7 +17,10 @@ public class User {
 	private String username;
 	private String password;
 	private Boolean enabled;
-	private String fullName;
+	private String firstName;
+	private String lastName;
+	private String address;
+	private String token;
 	private Set<UserRole> userRole = new HashSet<UserRole>(0);
  
 	public User() {
@@ -82,12 +79,12 @@ public class User {
 		this.userRole = userRole;
 	}
 
-	@Column(name = "FULL_NAME")
-	public String getFullName() {
-		return fullName;
+	@Column(name = "MARQETA_TOKEN")
+	public String getToken() {
+		return token;
 	}
 
-	public void setFullName(String fullName) {
-		this.fullName = fullName;
+	public void setToken(String token) {
+		this.token = token;
 	}
 }

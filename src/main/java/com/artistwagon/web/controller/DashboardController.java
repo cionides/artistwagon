@@ -10,14 +10,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.artistwagon.web.domain.UserGroup;
-import com.artistwagon.web.service.GroupService;
+import com.artistwagon.web.domain.MarqetaUser;
+import com.artistwagon.web.domain.UserBand;
+import com.artistwagon.web.service.BandService;
+import com.artistwagon.web.service.MarqetaService;
 
 @Controller
 public class DashboardController extends BaseController {
 	
 	@Autowired
-	GroupService groupService;
+	BandService bandService;
+	
+	@Autowired
+	MarqetaService marqetaService;
 	
 	@RequestMapping(value = {"/bank/dashboard"}, method = RequestMethod.GET)
 	public ModelAndView dashboard() {
@@ -25,8 +30,11 @@ public class DashboardController extends BaseController {
 		ModelAndView model = new ModelAndView();
 		model.setViewName("dashboard");
 		
-		List<UserGroup> userBand = groupService.getUserGroupById(groupService.getActiveBand().get(0).getId());
+		List<UserBand> userBand = bandService.getUserBandById(bandService.getActiveBand().get(0).getId());
 		model.addObject("userBand", userBand);
+		
+		MarqetaUser user = marqetaService.getActiveUser();
+		model.addObject("user", user);
 		
 		return model;
  

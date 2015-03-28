@@ -169,6 +169,22 @@ block content
                     input.form-control(type='text', data-masked="", data-inputmask="'mask': '€ 999.999.999,99'", placeholder="Currency Euro") 
                     span.help-block data-inputmask="'mask': '€ 999.999.999,99"'
 
+
+          fieldset
+            .form-group.mb
+              label.col-sm-2.control-label.mb DateTimePicker
+              .col-sm-10
+                #datetimepicker1.input-group.date
+                  input.form-control(type='text')
+                  span.input-group-addon
+                    span.fa.fa-calendar
+            .form-group.mb
+              label.col-sm-2.control-label.mb Time Picker
+              .col-sm-10
+                #datetimepicker2.input-group.date
+                  input.form-control(type='text')
+                  span.input-group-addon
+                    span.fa.fa-clock-o
           fieldset
             .form-group
               label.col-sm-2.control-label Tags input
@@ -272,6 +288,8 @@ block vendor_css
   link(rel='stylesheet', href='../vendor/seiyria-bootstrap-slider/dist/css/bootstrap-slider.min.css')
   // CHOSEN
   link(rel='stylesheet', href='../vendor/chosen_v1.2.0/chosen.min.css')
+  // DATETIMEPICKER
+  link(rel='stylesheet', href='../vendor/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css')
 block vendor_js
   // FILESTYLE
   script(src='../vendor/bootstrap-filestyle/src/bootstrap-filestyle.js')
@@ -286,4 +304,9 @@ block vendor_js
   // WYSIWYG
   script(src='../vendor/bootstrap-wysiwyg/bootstrap-wysiwyg.js')
   script(src='../vendor/bootstrap-wysiwyg/external/jquery.hotkeys.js')
+  // MOMENT JS
+  script(src='../vendor/moment/min/moment-with-locales.min.js')
+  // DATETIMEPICKER
+  script(type='text/javascript', src='../vendor/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js')
+  // Demo
   script(src='js/demo/demo-forms.js')

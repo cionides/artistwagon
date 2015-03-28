@@ -29,7 +29,6 @@
         sidebarCollapse.filter('.in').collapse('hide');
 
     });
-
     
     // SIDEBAR ACTIVE STATE 
     // ----------------------------------- 
@@ -37,11 +36,17 @@
     // Find current active item
     var currentItem = $('.sidebar .active').parents('li');
 
-    currentItem
-      .addClass('active')     // activate the parent
-      .children('.collapse')  // find the collapse
-      .collapse('show');      // and show it
+    // hover mode don't try to expand active collapse
+    if ( ! useAsideHover() )
+      currentItem
+        .addClass('active')     // activate the parent
+        .children('.collapse')  // find the collapse
+        .collapse('show');      // and show it
 
+    // remove this if you use only collapsible sidebar items
+    $sidebar.find('li > a + ul').on('show.bs.collapse', function (e) {
+      if( useAsideHover() ) e.preventDefault();
+    });
 
     // SIDEBAR COLLAPSED ITEM HANDLER
     // ----------------------------------- 
@@ -51,17 +56,25 @@
     var subNav = $();
     $sidebar.on( eventName, '.nav > li', function() {
 
-      if( isSidebarCollapsed() && !isMobile() ) {
+      if( isSidebarCollapsed() || useAsideHover() ) {
 
         subNav.trigger('mouseleave');
         subNav = toggleMenuItem( $(this) );
 
+        // Used to detect click and touch events outside the sidebar          
+        sidebarAddBackdrop();
       }
 
     });
 
   });
 
+  function sidebarAddBackdrop() {
+    var $backdrop = $('<div/>', { 'class': 'dropdown-backdrop'} );
+    $backdrop.insertAfter('.aside').on("click mouseenter", function () {
+      removeFloatingNav();
+    });
+  }
 
   // Open the collapse sidebar submenu items when on touch devices 
   // - desktop only opens on hover
@@ -88,7 +101,9 @@
     }
 
     var $aside = $('.aside');
-    var mar = parseInt( $aside.css('padding-top'), 0);
+    var $asideInner = $('.aside-inner'); // for top offset calculation
+    // float aside uses extra padding on aside
+    var mar = parseInt( $asideInner.css('padding-top'), 0) + parseInt( $aside.css('padding-top'), 0);
 
     var subNav = ul.clone().appendTo( $aside );
     
@@ -115,6 +130,8 @@
 
   function removeFloatingNav() {
     $('.sidebar-subnav.nav-floating').remove();
+    $('.dropdown-backdrop').remove();
+    $('.sidebar li.open').removeClass('open');
   }
 
   function isTouch() {
@@ -131,6 +148,9 @@
   }
   function isFixed(){
     return $body.hasClass('layout-fixed');
+  }
+  function useAsideHover() {
+    return $body.hasClass('aside-hover');
   }
 
 })(window, document, window.jQuery);

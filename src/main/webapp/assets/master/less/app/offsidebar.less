@@ -22,12 +22,15 @@
   border-left: 1px solid @offsidebar-border-color;
   background-color: @offsidebar-bg;
   color: @offsidebar-color;
-  overflow: auto;
   z-index: -1;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+  .transition(all .3s ease);
   
   > nav {
     min-height: 100%;
     overflow: hidden;
+    -webkit-transform: translateZ(0px);
   }
 
   .progress {
@@ -95,7 +98,6 @@
   .offsidebar-open {
     .offsidebar {
       .translate3d(0, 0, 0);
-      .transition(all .3s ease);
     }
   }
 }

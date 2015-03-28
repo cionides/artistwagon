@@ -12,7 +12,7 @@ mixin build_sidebar_tree(tree)
     li(class=(item.heading?'nav-heading':'')+' '+(item.active?'active':''))
 
       - if (item.heading)
-        span= item.text
+        span(data-localize=item.translate)= item.text
       - else
         - if (item.submenu)
           a(href=item.href, title=item.text, data-toggle="collapse")

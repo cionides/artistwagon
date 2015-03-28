@@ -3,7 +3,7 @@
 
 <h3>
 	<div class="col-lg-12 clearfix p0">
-	<span class="pull-left">${userBand[0].group.name} <a href="#">Change Band</a></span>
+	<span class="pull-left">${userBand[0].band.name} <a href="#">Change Band</a></span>
 	<span class="pull-right">Balance: <fmt:formatNumber value="${userBand[0].balance}" type="currency" /> </span>
 	</div>
 	<small>Add Money</small>

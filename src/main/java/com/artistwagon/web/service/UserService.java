@@ -1,5 +1,6 @@
 package com.artistwagon.web.service;
 
+import com.artistwagon.web.domain.MarqetaUser;
 import com.artistwagon.web.domain.User;
 
 public interface UserService {

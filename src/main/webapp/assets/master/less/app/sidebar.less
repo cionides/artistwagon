@@ -29,6 +29,7 @@
   margin-right: -@scrollbar-wd;  // hides the scrollbar
   overflow-x: hidden;
   overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
   
   // draw a divider for the sidebar
   &:after {
@@ -40,6 +41,7 @@
     bottom: 0;
     right: 0;
     width: 1px;
+    -webkit-transform: translateZ(0px);
   }
 
   .nav-heading {
@@ -80,7 +82,7 @@
         }
         // Item icon
         > em {
-          width: 1.8em;
+          width: 2em;
           display: inline-block;
           font-style: normal;
           font-weight: normal;
@@ -105,7 +107,7 @@
       }
 
       &.active {
-        border-left-color: initial;
+        border-left-color: @sidebar-item-color-active;
       }
     }
     .label {
@@ -165,6 +167,13 @@
   &.nav-floating {
     border: 1px solid rgba(0,0,0,0.15);
     margin-left: -1px;
+    // we resuse the collapse element so we need to override
+    &, .collapse {
+      height: auto !important;
+      display: block !important;
+      visibility: visible !important;
+    }
+
     > .sidebar-subnav-header {
       display: block;
     }
@@ -187,51 +196,51 @@
     }
   }
   
-  // Collapsed state styles
-  .aside-collapsed {
+}
 
-    .sidebar {
-      overflow-x: hidden;
-      // Applies to first level items
-      > .nav {
-        
-        .nav, 
-        > .nav-heading,
-        > li > a > span {
-          display: none !important;
-        }
+// Collapsed state styles
+.aside-collapsed {
 
-        > li {
-          width: @aside-wd-collapsed - 1;
-          > a, > .nav-item {
-            text-indent: -@sidebar-item-border-wd;
-            padding: 20px 0;
-            text-align: center;
-            > em {
-              font-size: 1.6em; // increase icons size
-              width: auto;
-            }
-            &:focus { // accessibility
-              background-color: transparent;
-              > em { 
-                color: inherit; 
-              }
+  .sidebar {
+    overflow-x: hidden;
+    // Applies to first level items
+    > .nav {
+      
+      .nav, 
+      > .nav-heading,
+      > li > a > span {
+        display: none !important;
+      }
+
+      > li {
+        width: @aside-wd-collapsed - 2;
+        > a, > .nav-item {
+          text-indent: -@sidebar-item-border-wd;
+          padding: 20px 0;
+          text-align: center;
+          > em {
+            font-size: 1.6em; // increase icons size
+            width: auto;
+          }
+          &:focus { // accessibility
+            background-color: transparent;
+            > em { 
+              color: inherit; 
             }
           }
         }
       }
+    }
 
-      // labels in menu items
-      .nav {
-        .label {
-          position: absolute;
-          top: 10px; 
-          right: 5px;
-          text-indent: 0;
-        }
+    // labels in menu items
+    .nav {
+      .label {
+        position: absolute;
+        top: 10px; 
+        right: 5px;
+        text-indent: 0;
       }
+    }
 
-    } // .sidebar
-  } // .aside-collapsed
-} // @media @desktop
-
+  } // .sidebar
+} // .aside-collapsed

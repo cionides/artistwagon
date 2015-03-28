@@ -20,9 +20,10 @@
    <!-- =============== PAGE VENDOR STYLES ===============-->
    <!-- =============== APP STYLES ===============-->
    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/app/css/app.css" id="maincss">
+   <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/custom/css/styles.css">
 </head>
 
-<body>
+<body class="layout-h">
    <div class="wrapper">
       <!-- top navbar-->
       <header class="topnavbar-wrapper">
@@ -48,10 +49,10 @@
                      <a href="${pageContext.request.contextPath}/bank/dashboard" title="Dashboard">Dashboard</a>
                   </li>
                   <li>
-                     <a href="${pageContext.request.contextPath}/bank/bands/${userBand[0].id}/transactions" title="Transactions">Transactions</a>
+                     <a href="${pageContext.request.contextPath}/bank/bands/${userBand[0].id}/members" title="Band Members">Band Members</a>
                   </li>
                   <li>
-                     <a href="${pageContext.request.contextPath}/bank/bands/${userBand[0].id}/members" title="Band Members">Band Members</a>
+                     <a href="${pageContext.request.contextPath}/bank/bands/${userBand[0].id}/transactions" title="Transactions">Transactions</a>
                   </li>
                   <li>
                   	<a data-toggle="collapse" href="#transferMoneyDiv">Transfer Money</a>

@@ -16,8 +16,8 @@ block content
           .panel-heading
             | Collapsible Panel
             a(href="#", data-tool="panel-collapse", data-toggle="tooltip", title="Collapse Panel").pull-right
-              em.fa.fa-plus
-          .panel-wrapper
+              em.fa.fa-minus
+          .panel-wrapper.collapse.in
             .panel-body
               p Panel can be collapsed clicking on the chevron up/down icon on the top right corner
             .panel-footer
@@ -33,7 +33,7 @@ block content
             a(href="#", data-tool="panel-collapse", data-toggle="tooltip", title="Collapse Panel").pull-right
               em.fa.fa-plus
           // .panel-wrapper is the element to be collapsed
-          .panel-wrapper
+          .panel-wrapper.collapse
             .panel-body
               p Initially collapsed panel 
             .panel-footer
