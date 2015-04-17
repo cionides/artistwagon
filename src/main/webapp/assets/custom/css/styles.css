@@ -3,24 +3,38 @@ html, html a {
     text-shadow: 1px 1px 1px rgba(0,0,0,0.004);
 }
 
-.layout-h .wrapper > section > .content-wrapper > h3 {
-  display: block;
-  background: none;
+body {
+	background: #FCFCFA;
+	font-size: 16px;
+}
+
+.brand-logo {
+	color: #FFF;
+	font-size: 28px;
+	margin-top: 5px;
 }
 
 .nav-wrapper {
-	padding: 10px;
 	box-shadow: none;
 }
 
 .topnavbar .navbar-nav > li > a {
-	font-size: 16px;
+	font-size: 18px;
 }
 
-.registration-panel {
-	margin-top: 100px;
+.registration-panel,
+.login-panel {
+	margin-top: 80px;
 }
 
 h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 	font-weight: 400;
+}
+
+.wrapper > section {
+	background: #FCFCFA;
+}
+
+.btn {
+	font-size: 16px;
 }

@@ -30,7 +30,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 		
 		com.artistwagon.web.domain.User user = userDao.getUserByUserName(username);
 		List<GrantedAuthority> authorities = 
-                                      buildUserAuthority(user.getUserRole());
+                                      buildUserAuthority(user.getUserRoles());
  
 		return buildUserForAuthentication(user, authorities);
 		

@@ -19,7 +19,7 @@ public class UserRole{
  
 	private Integer userRoleId;
 	private User user;
-	private String role;
+	private String role = "ROLE_USER";
  
 	public UserRole() {
 	}

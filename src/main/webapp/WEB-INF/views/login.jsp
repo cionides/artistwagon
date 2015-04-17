@@ -25,64 +25,62 @@
 
 <body id="loginPage">
 
-		<c:if test="${not empty error}">
-			<div role="alert" class="alert alert-danger">
+<div class="container">
+<div class="col-lg-6 col-lg-offset-3">
+ <div class="panel login-panel radius-clear b">
+	<div class="panel-heading text-center">
+		<h1>Artist Wagon</h1>
+		<h5>Sign in to continue.</h5>
+	</div>
+	<div class="panel-body">
+	 		<c:if test="${not empty error}">
+			<div role="alert" class="alert alert-danger radius-clear">
 		  	<strong>ERROR:</strong> ${error}
 			</div>
 		</c:if>
 		<c:if test="${not empty msg}">
-			<div role="alert" class="alert alert-info">
+			<div role="alert" class="alert alert-info radius-clear">
 		  	<strong>INFO:</strong> ${msg}
 			</div>
 		</c:if>
-
-
- <div class="wrapper">
-      <div class="block-center mt-xl wd-xl">
-         <!-- START panel-->
-         <div class="panel panel-info panel-flat radius-clear">
-            <div class="panel-heading text-center radius-clear">
-               <a href="#">
-                  <div class="brand-logo">
-                     <h2>Artist Wagon</h2>
-                  </div>
-               </a>
-            </div>
-            <div class="panel-body">
-               <p class="text-center pv">SIGN IN TO CONTINUE.</p>
-               <form action="login" method="POST" name="loginForm" role="form" class="mb-lg">
-               		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-                  <div class="form-group has-feedback">
-                     <input id="exampleInputEmail1" name="username" type="text" placeholder="Enter email" autofocus="autofocus" autocomplete="off" class="form-control">
-                     <span class="fa fa-envelope form-control-feedback text-muted"></span>
-                  </div>
-                  <div class="form-group has-feedback">
-                     <input id="exampleInputPassword1" name="password" type="password" placeholder="Password" class="form-control">
-                     <span class="fa fa-lock form-control-feedback text-muted"></span>
-                  </div>
-                  <div class="clearfix">
-                     <div class="checkbox c-checkbox pull-left mt0">
-                        <label>
-                           <input type="checkbox" value="" name="remember">
-                           <span class="fa fa-check"></span>Remember Me</label>
-                     </div>
-                     <div class="pull-right"><a href="recover.html" class="text-muted">Forgot your password?</a>
-                     </div>
-                  </div>
-                  <button type="submit" class="btn btn-block btn-primary mt-lg">Login</button>
-               </form>
-               <p class="pt-lg text-center">Need to Signup?</p><a href="register" class="btn btn-block btn-default">Register Now</a>
-            </div>
-         </div>
-         <!-- END panel-->
-         <div class="p-lg text-center">
-            <span>&copy;</span>
-            <span>2015</span>
-            <span>-</span>
-            <span>Artist Wagon</span>
-         </div>
+     <form action="${pageContext.request.contextPath}/login" method="POST" name="loginForm" role="form" class="mb-lg">
+   		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+      <div class="form-group has-feedback">
+         <input id="exampleInputEmail1" name="username" type="text" placeholder="Enter email" 
+         	autofocus="autofocus" autocomplete="off" class="form-control input-lg radius-clear">
+         <span class="fa fa-envelope form-control-feedback text-muted"></span>
       </div>
+      <div class="form-group has-feedback">
+         <input id="exampleInputPassword1" name="password" type="password" placeholder="Password" 
+         	class="form-control input-lg radius-clear">
+         <span class="fa fa-lock form-control-feedback text-muted"></span>
+      </div>
+      <div class="clearfix">
+        <div class="checkbox c-checkbox pull-left mt0">
+           <label>
+              <input type="checkbox" value="" name="remember">
+              <span class="fa fa-check"></span>Remember Me</label>
+        </div>
+        <div class="pull-right">
+        	<a href="recover.html" class="text-muted">Forgot your password?</a>
+        </div>
+      </div>
+      <button type="submit" class="btn btn-lg btn-block btn-primary radius-clear mt-lg">Login</button>
+   </form>
+	</div>
+</div>
+   <div class="panel-body text-center">
+      <p>Need to Signup?</p>
+      <a href="${pageContext.request.contextPath}/register">Register Now</a> <br />
    </div>
+   <div class="p-lg text-center">
+      <span>&copy;</span>
+      <span>2015</span>
+      <span>-</span>
+      <span>Artist Wagon</span>
+   </div>
+  </div>
+</div>
    <!-- =============== VENDOR SCRIPTS ===============-->
    <!-- MODERNIZR-->
    <script src="${pageContext.request.contextPath}/assets/vendor/modernizr/modernizr.js"></script>

@@ -25,10 +25,13 @@
    <script src="${pageContext.request.contextPath}/assets/vendor/screenfull/dist/screenfull.min.js"></script>
    <!-- LOCALIZE-->
    <script src="${pageContext.request.contextPath}/assets/vendor/jquery-localize-i18n/dist/jquery.localize.js"></script>
+   <!-- INPUT MASK-->
+   <script src="${pageContext.request.contextPath}/assets/vendor/jquery.inputmask/dist/jquery.inputmask.bundle.min.js"></script>
 
    <!-- =============== PAGE VENDOR SCRIPTS ===============-->
    <!-- =============== APP SCRIPTS ===============-->
    <script src="${pageContext.request.contextPath}/assets/app/js/app.js"></script>
+      <script src="${pageContext.request.contextPath}/assets/custom/js/create.js"></script>
 </body>
 
 </html>

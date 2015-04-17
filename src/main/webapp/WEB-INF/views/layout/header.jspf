@@ -25,15 +25,12 @@
 
 <body class="layout-h">
    <div class="wrapper">
-      <!-- top navbar-->
       <header class="topnavbar-wrapper">
-         <!-- START Top Navbar-->
          <nav role="navigation" class="navbar topnavbar">
-            <!-- START navbar header-->
             <div class="navbar-header">
-               <a href="${pageContext.request.contextPath}/bank/dashboard" class="navbar-brand">
+               <a href="${pageContext.request.contextPath}/app/events" class="navbar-brand">
                   <div class="brand-logo">
-                     <h2>Artist Wagon</h2>
+                     Artist Wagon
                   </div>
                   <div class="brand-logo-collapsed">
                      <h2>AR</h2>
@@ -43,27 +40,15 @@
             <!-- END navbar header-->
             <!-- START Nav wrapper-->
             <div class="nav-wrapper">
-            	<ul class="nav navbar-nav ml-xl">
-                  <!-- START User avatar toggle-->
-                  <li>
-                     <a href="${pageContext.request.contextPath}/bank/dashboard" title="Dashboard">Dashboard</a>
-                  </li>
-                  <li>
-                     <a href="${pageContext.request.contextPath}/bank/bands/${userBand[0].id}/members" title="Band Members">Band Members</a>
-                  </li>
-                  <li>
-                     <a href="${pageContext.request.contextPath}/bank/bands/${userBand[0].id}/transactions" title="Transactions">Transactions</a>
-                  </li>
-                  <li>
-                  	<a data-toggle="collapse" href="#transferMoneyDiv">Transfer Money</a>
-									</li>
-               </ul>
+            	<ul class="nav navbar-nav">
+        				<li><a href="${pageContext.request.contextPath}/app/events" title="Events">Events</a></li>
+        			</ul>
               <!-- START Right Navbar-->
               <ul class="nav navbar-nav navbar-right">
                   <!-- START Alert menu-->
                   <li class="dropdown dropdown-list">
                      <a href="#" data-toggle="dropdown">
-                     	Matt Adelberger <span class="caret"></span>
+                     	${currentUser.username} <span class="caret"></span>
                      </a>
                      <!-- START Dropdown menu-->
                      <ul class="dropdown-menu animated flipInX">
@@ -107,66 +92,6 @@
          <!-- END Top Navbar-->
       </header>
       <!-- Main section-->
-			<div class="collapse" id="transferMoneyDiv">
-			  <div class="container">
-			  	<div class="col-lg-3">
-			  		<a href="${pageContext.request.contextPath}/bank/bands/${userBand[0].id}/add" title="Add Money">
-				  		<div class="panel-default">
-			          <div class="panel-body text-center mt-xl">
-		            	<p>
-		            		<i class="fa fa-plus fa-3x"></i>
-		            	</p>
-		            	<p>
-		            		Add Money
-		             	</p>
-			          </div>
-	          	</div>
-	          </a>
-			  	</div>
-			  	<div class="col-lg-3">
-			  		<a href="${pageContext.request.contextPath}/bank/bands/${userBand[0].id}/withdraw" title="Withdraw Money">
-				  		<div class="panel-default">
-			          <div class="panel-body text-center mt-xl">
-		            	<p>
-		            		<i class="fa fa-minus fa-3x"></i>
-		            	</p>
-		            	<p>
-		            		Withdraw Money
-		             	</p>
-			          </div>
-	          	</div>
-	          </a>
-			  	</div>
-			  	<div class="col-lg-3">
-			  		<a href="${pageContext.request.contextPath}/bank/bands/${userBand[0].id}/#" title="Request Money">
-				  		<div class="panel-default">
-			          <div class="panel-body text-center mt-xl">
-		            	<p>
-		            		<i class="fa fa-bell fa-3x"></i>
-		            	</p>
-		            	<p>
-		            		Request Money
-		             	</p>
-			          </div>
-	          	</div>
-	          </a>
-			  	</div>
-			  	<div class="col-lg-3">
-			  		<a href="${pageContext.request.contextPath}/bank/bands/${userBand[0].id}/#" title="Request Money">
-				  		<div class="panel-default">
-			          <div class="panel-body text-center mt-xl">
-		            	<p>
-		            		<i class="fa fa-gear fa-3x"></i>
-		            	</p>
-		            	<p>
-		            		Manage Bank Accounts
-		             	</p>
-			          </div>
-	          	</div>
-	          </a>
-			  	</div>
-			  </div>
-			</div>
       <section>
          <!-- Page content-->
-         <div class="content-wrapper container">
+         <div class="content-wrapper">

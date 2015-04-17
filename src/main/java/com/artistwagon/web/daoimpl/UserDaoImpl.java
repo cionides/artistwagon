@@ -3,7 +3,9 @@ package com.artistwagon.web.daoimpl;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -32,6 +34,17 @@ public class UserDaoImpl implements UserDao {
 			return null;
 		}
  
+	}
+	
+	public void createUser(User user) {
+		
+		Session session = sessionFactory.openSession();
+		Transaction transaction = session.beginTransaction();	
+		
+		session.save(user);
+		transaction.commit();
+		
+		session.close();	
 	}
 	
 }

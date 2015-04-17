@@ -3,12 +3,16 @@ package com.artistwagon.web.domain;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name = "USER")
@@ -17,11 +21,8 @@ public class User {
 	private String username;
 	private String password;
 	private Boolean enabled;
-	private String firstName;
-	private String lastName;
-	private String address;
-	private String token;
-	private Set<UserRole> userRole = new HashSet<UserRole>(0);
+	private Group group;
+	private Set<UserRole> userRoles = new HashSet<UserRole>(0);
  
 	public User() {
 	}
@@ -37,7 +38,7 @@ public class User {
 		this.username = username;
 		this.password = password;
 		this.enabled = enabled;
-		this.userRole = userRole;
+		this.userRoles = userRole;
 	}
  
 	@Id
@@ -70,21 +71,42 @@ public class User {
 		this.enabled = enabled;
 	}
  
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
-	public Set<UserRole> getUserRole() {
-		return this.userRole;
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "user")
+	public Set<UserRole> getUserRoles() {
+		return this.userRoles;
 	}
  
-	public void setUserRole(Set<UserRole> userRole) {
-		this.userRole = userRole;
+	public void setUserRoles(Set<UserRole> userRoles) {
+		this.userRoles = userRoles;
+	}
+	
+	@OneToOne(cascade={CascadeType.ALL})
+	@JoinColumn(name = "GROUP_ID")
+	public Group getGroup() {
+		return group;
 	}
 
-	@Column(name = "MARQETA_TOKEN")
-	public String getToken() {
-		return token;
+	public void setGroup(Group group) {
+		this.group = group;
 	}
-
-	public void setToken(String token) {
-		this.token = token;
+	
+	@Transient
+	public Boolean isPayer() {
+		
+		if(this.getGroup().getType().equals("Venue")) {
+			return true;
+		} else {
+			return false;
+		}	
+	}
+	
+	@Transient
+	public Boolean isPayee() {
+		
+		if(this.getGroup().getType().equals("Artist") || this.getGroup().getType().equals("Agent")) {
+			return true;
+		} else {
+			return false;
+		}	
 	}
 }

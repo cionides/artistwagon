@@ -6,4 +6,6 @@ public interface UserDao {
 
 	User getUserByUserName(String username);
 	
+	public void createUser(User user);
+	
 }
