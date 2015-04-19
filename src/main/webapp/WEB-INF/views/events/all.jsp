@@ -36,7 +36,7 @@
     	<tr>
     		<td>${event.date}</td>
     		<td>${event.payee}</td>
-    		<td>${event.payer}</td>
+    		<td>${event.payer.name}</td>
     		<td><fmt:formatNumber value="${event.price}" type="currency" /></td>
     		<td>${event.status}</td>
     		<td><a href="${pageContext.request.contextPath}/app/events/${event.id}">Open Event</a></td>

@@ -13,24 +13,20 @@
 			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 			<div class="form-group clearfix">
 				<div class="col-md-12">
-					<form:label path="payer">Venue/Promoter <small>(Payers)</small></form:label>
-					<select path="payer" name="payer" class="form-control input-lg radius-clear">
-						<option value="">--- Select ---</option>
-						<c:forEach items="${payerDropdownList}" var="payer">
-							<option value="${payer.name}">${payer.name}</option>
-	 				  </c:forEach>
-					</select>
+					<form:label path="payer">Venue/Promoter <small>(Payer)</small></form:label>
+					<form:select path="payer" class="form-control input-lg radius-clear">
+						<option>--- Select ---</option>
+    				<form:options items="${payerDropdownList}" itemValue="id" itemLabel="name" />
+					</form:select>
 				</div>
 	    </div>
 	    <div class="form-group clearfix">
 				<div class="col-md-12">
 					<form:label path="payee">Artist/Agent <small>(Payees)</small></form:label>
-					<select path="payee" name="payee" class="form-control input-lg radius-clear">
-						<option value="">--- Select ---</option>
-						<c:forEach items="${payeeDropdownList}" var="payee">
-							<option value="${payee.name}">${payee.name}</option>
-	 				  </c:forEach>
-					</select>
+					<form:select path="payee" class="form-control input-lg radius-clear">
+						<option>--- Select ---</option>
+    				<form:options items="${payeeDropdownList}" itemValue="name" itemLabel="name" />
+					</form:select>
 					<a class="pl-sm" href="">Add Another Artist/Agent</a>
 				</div>
 	    </div>

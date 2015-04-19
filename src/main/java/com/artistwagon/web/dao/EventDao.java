@@ -12,4 +12,6 @@ public interface EventDao {
 	
 	public Event getEventById(Integer eventId);
 	
+	public void updateEvent(Event event);
+	
 }

@@ -5,11 +5,14 @@ import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name = "EVENT")
@@ -18,7 +21,7 @@ public class Event {
 	private Integer id;
 	private String date;
 	private String payee;
-	private String payer;
+	private Group payer;
 	private Double price;
 	private String payerSlug;
 	private String payeeSlug;
@@ -59,14 +62,15 @@ public class Event {
 	public void setPayee(String payee) {
 		this.payee = payee;
 	}
-
-	@Column(name = "PAYER",
+	
+	@ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "PAYER_ID",
 			nullable = false)
-	public String getPayer() {
+	public Group getPayer() {
 		return payer;
 	}
 
-	public void setPayer(String payer) {
+	public void setPayer(Group payer) {
 		this.payer = payer;
 	}
 	
@@ -108,5 +112,14 @@ public class Event {
 
 	public void setPayeeSlug(String payeeSlug) {
 		this.payeeSlug = payeeSlug;
+	}
+	
+	@Transient
+	public boolean isPaid() {
+		if(this.getStatus().equals("Paid")) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 }
