@@ -22,7 +22,7 @@
 					</tr>
 					<tr>
 						<td class="col-lg-3"><strong>Venue/Promoter</strong></td>
-						<td>${event.payer}</td>
+						<td>${event.payer.name}</td>
 					</tr>
 					<tr>
 						<td class="col-lg-3"><strong>Artist</strong></td>

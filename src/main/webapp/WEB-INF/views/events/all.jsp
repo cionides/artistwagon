@@ -25,7 +25,7 @@
 <table class="table table-responsive">
 	<thead>
 		<th>Date</th>
-		<th>Artist</th>
+		<th>Artist(s)</th>
 		<th>Venue/Promoter</th>
 		<th>Price</th>
 		<th>Status</th>

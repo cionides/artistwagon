@@ -27,6 +27,8 @@
    <script src="${pageContext.request.contextPath}/assets/vendor/jquery-localize-i18n/dist/jquery.localize.js"></script>
    <!-- INPUT MASK-->
    <script src="${pageContext.request.contextPath}/assets/vendor/jquery.inputmask/dist/jquery.inputmask.bundle.min.js"></script>
+   <!-- DYNAMIC LIST-->
+   <script src="${pageContext.request.contextPath}/assets/custom/vendor/dynamiclist/dynamic-list.min.js"></script>
 
    <!-- =============== PAGE VENDOR SCRIPTS ===============-->
    <!-- =============== APP SCRIPTS ===============-->

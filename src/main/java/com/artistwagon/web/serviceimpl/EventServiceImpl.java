@@ -1,5 +1,6 @@
 package com.artistwagon.web.serviceimpl;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 
@@ -30,8 +31,11 @@ public class EventServiceImpl implements EventService {
 		
 		Event newEvent = new Event();
 		newEvent.setDate(event.getDate());
-		newEvent.setPayee(event.getPayee());
 		newEvent.setPrice(event.getPrice());
+		
+		newEvent.setPayee(event.getPayees().get(0));
+		//String payeeList = event.getPayee().get(0);
+		//List<String> elephantList = Arrays.asList(payeeList.split(","));
 		
 		newEvent.setStatus("Not Paid");
 		newEvent.setPayerSlug(UUID.randomUUID().toString().replaceAll("-", ""));

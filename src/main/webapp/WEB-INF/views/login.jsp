@@ -19,8 +19,7 @@
    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/vendor/whirl/dist/whirl.css">
    <!-- =============== PAGE VENDOR STYLES ===============-->
    <!-- =============== APP STYLES ===============-->
-   <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/app/css/app.css" id="maincss">
-   <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/custom/css/styles.css">
+   <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/custom/css/artistwagon.css" id="maincss">
 </head>
 
 <body id="loginPage">

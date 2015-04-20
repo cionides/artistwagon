@@ -3,7 +3,7 @@
 
 <div class="row">
 <div class="col-lg-8 col-lg-offset-2">
- <div class="panel radius-clear b animated bounceInDown">
+ <div class="panel radius-clear b animated bounceInDown mt-xl">
 	<div class="panel-heading text-center">
 		<h1>Create Event</h1>
 		<h5>Put some text here that eventually explains all the rules about creating an event.</h5>
@@ -21,13 +21,16 @@
 				</div>
 	    </div>
 	    <div class="form-group clearfix">
-				<div class="col-md-12">
-					<form:label path="payee">Artist/Agent <small>(Payees)</small></form:label>
-					<form:select path="payee" class="form-control input-lg radius-clear">
-						<option>--- Select ---</option>
-    				<form:options items="${payeeDropdownList}" itemValue="name" itemLabel="name" />
-					</form:select>
-					<a class="pl-sm" href="">Add Another Artist/Agent</a>
+				<div id="eventPayees" class="col-md-12">
+					<form:label path="payees">Artist/Agent <small>(Payees)</small></form:label>
+        	<div class="list-item">
+						<form:select path="payees[0]" class="form-control input-lg radius-clear mb-sm">
+							<option>--- Select ---</option>
+    					<form:options items="${payeesDropdownList}" itemValue="name" itemLabel="name" />
+						</form:select>
+            <!-- <a href="#" class="list-remove">Remove</a> -->
+        	</div>
+					<a id="addPayee" class="pl-sm list-add" href="">Add Another Artist/Agent</a>
 				</div>
 	    </div>
 	    <div class="form-group col-md-6">
@@ -35,7 +38,7 @@
 			  <form:input path="date" type="text" placeholder="Enter date" 
 			   	autocomplete="off" data-inputmask="'mask': '99/99/9999'"
 			   	 class="form-control input-lg radius-clear" />
-	    	</div>
+	    </div>
 	    <div class="form-group col-md-6">
 				<form:label path="price">Price</form:label>
 			  <form:input path="price" type="text" placeholder="Enter price" 

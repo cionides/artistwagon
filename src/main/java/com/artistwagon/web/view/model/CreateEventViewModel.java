@@ -1,9 +1,12 @@
 package com.artistwagon.web.view.model;
 
+import org.springframework.util.AutoPopulatingList;
+
 public class CreateEventViewModel {
 
 	private String date;
-	private String payee;
+	private AutoPopulatingList<String> payees = 
+			new AutoPopulatingList<String>(String.class);
 	private Integer payer;
 	private Double price;
 	
@@ -14,11 +17,11 @@ public class CreateEventViewModel {
 		this.date = date;
 	}
 	
-	public String getPayee() {
-		return payee;
+	public AutoPopulatingList<String> getPayees() {
+		return payees;
 	}
-	public void setPayee(String payee) {
-		this.payee = payee;
+	public void setPayees(AutoPopulatingList<String> payees) {
+		this.payees = payees;
 	}
 	
 	public Integer getPayer() {

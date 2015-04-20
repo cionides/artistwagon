@@ -2,6 +2,7 @@ package com.artistwagon.web.controller;
 
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 
@@ -77,7 +78,7 @@ public class EventController extends BaseController {
 		model.addObject("command", new CreateEventViewModel());
 		
 		model.addObject("payerDropdownList", groupService.getPayers());
-		model.addObject("payeeDropdownList", groupService.getPayees());
+		model.addObject("payeesDropdownList", groupService.getPayees());
 		
 		return model;
 		
