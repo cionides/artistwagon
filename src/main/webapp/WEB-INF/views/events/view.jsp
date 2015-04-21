@@ -4,7 +4,7 @@
 
 <div class="row">
 	<div class="col-lg-8 col-lg-offset-2">
-		<div class="panel radius-clear b animated bounceInDown">
+		<div class="panel radius-clear b animated bounceInDown mt-xl">
 			<div class="panel-heading text-center">
 				<h1>Event Details</h1>
 				<h5>Put some text here about event details.</h5>
@@ -25,8 +25,24 @@
 						<td>${event.payer.name}</td>
 					</tr>
 					<tr>
+						<td class="col-lg-3"><strong>Agent(s)</strong></td>
+						<td>
+							<c:forEach items="${event.payees}" var="payee">
+    						<c:if test="${payee.isAgent()}">
+    							${payee.group.name} <br />
+    						</c:if>
+    					</c:forEach>
+    				</td>
+					</tr>
+					<tr>
 						<td class="col-lg-3"><strong>Artist</strong></td>
-						<td>${event.payee}</td>
+						<td>
+							<c:forEach items="${event.payees}" var="payee">
+    						<c:if test="${payee.isArtist()}">
+    							${payee.group.name} <br />
+    						</c:if>
+    					</c:forEach>
+    				</td>
 					</tr>
 					<tr>
 						<td class="col-lg-3"><strong>Price</strong></td>

@@ -2,6 +2,9 @@ package com.artistwagon.web.domain;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,10 +12,11 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
+
 
 @Entity
 @Table(name = "EVENT")
@@ -20,12 +24,10 @@ public class Event {
 	
 	private Integer id;
 	private String date;
-	private String payee;
 	private Group payer;
 	private Double price;
-	private String payerSlug;
-	private String payeeSlug;
 	private String status;
+	private List<EventPayee> payees = new ArrayList<EventPayee>(); 
 	
 	public Event() {
 		
@@ -53,17 +55,7 @@ public class Event {
 		this.date = date;
 	}
 	
-	@Column(name = "PAYEE",
-			nullable = false)
-	public String getPayee() {
-		return payee;
-	}
-
-	public void setPayee(String payee) {
-		this.payee = payee;
-	}
-	
-	@ManyToOne(fetch = FetchType.EAGER)
+	@OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "PAYER_ID",
 			nullable = false)
 	public Group getPayer() {
@@ -93,25 +85,14 @@ public class Event {
 	public void setStatus(String status) {
 		this.status = status;
 	}
-	
-	@Column(name = "PAYER_SLUG",
-			nullable = false)
-	public String getPayerSlug() {
-		return payerSlug;
+		
+	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy="event")
+	public List<EventPayee> getPayees() {
+		return payees;
 	}
 
-	public void setPayerSlug(String payerSlug) {
-		this.payerSlug = payerSlug;
-	}
-	
-	@Column(name = "PAYEE_SLUG",
-			nullable = false)
-	public String getPayeeSlug() {
-		return payeeSlug;
-	}
-
-	public void setPayeeSlug(String payeeSlug) {
-		this.payeeSlug = payeeSlug;
+	public void setPayees(List<EventPayee> payees) {
+		this.payees = payees;
 	}
 	
 	@Transient

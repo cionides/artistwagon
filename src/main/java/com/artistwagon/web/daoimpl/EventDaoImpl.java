@@ -46,8 +46,8 @@ public class EventDaoImpl implements EventDao {
 	public void updateEvent(Event event) {
 		
 		Session session = sessionFactory.openSession();
-		Transaction transaction = session.beginTransaction();	
-		
+		Transaction transaction = session.beginTransaction();
+				
 	    session.update(event);
 		transaction.commit();
 		
@@ -56,11 +56,13 @@ public class EventDaoImpl implements EventDao {
 	
 	public Event getEventById(Integer eventId) {
 		
-		Query query = sessionFactory.getCurrentSession()
-				.createQuery("From Event where id=:id")
+		Session session = sessionFactory.openSession();
+		Query query = session.createQuery("From Event where id=:id")
 				.setParameter("id", eventId);
 		
 		Event event = (Event) query.uniqueResult();
+		
+		session.close();
 		
 		return event;
 	}

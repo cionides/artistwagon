@@ -35,7 +35,13 @@
 		<c:forEach items="${events}" var="event">
     	<tr>
     		<td>${event.date}</td>
-    		<td>${event.payee}</td>
+    		<td>
+    			<c:forEach items="${event.payees}" var="payee">
+    				<c:if test="${payee.isArtist()}">
+    					${payee.group.name} <br />
+    				</c:if>
+    			</c:forEach>
+    		</td>
     		<td>${event.payer.name}</td>
     		<td><fmt:formatNumber value="${event.price}" type="currency" /></td>
     		<td>${event.status}</td>

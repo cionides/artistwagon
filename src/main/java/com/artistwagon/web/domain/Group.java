@@ -13,6 +13,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name = "\"GROUP\"")
@@ -21,8 +22,6 @@ public class Group {
 	private Integer id;
 	private String name;
 	private String type;
-	
-	private List<Event> events = new ArrayList<Event>();
 	
 	public Group() {
 		
@@ -54,15 +53,6 @@ public class Group {
 
 	public void setType(String type) {
 		this.type = type;
-	}
-	
-	@OneToMany(fetch = FetchType.LAZY, cascade=CascadeType.ALL, mappedBy = "payer")
-	public List<Event> getEvents() {
-		return events;
-	}
-
-	public void setEvents(List<Event> events) {
-		this.events = events;
 	}
 
 }

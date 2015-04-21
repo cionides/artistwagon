@@ -22,11 +22,11 @@
 	    </div>
 	    <div class="form-group clearfix">
 				<div id="eventPayees" class="col-md-12">
-					<form:label path="payees">Artist/Agent <small>(Payees)</small></form:label>
+					<form:label path="payees">Artist/Agent(s) <small>(Payees)</small></form:label>
         	<div class="list-item">
 						<form:select path="payees[0]" class="form-control input-lg radius-clear mb-sm">
 							<option>--- Select ---</option>
-    					<form:options items="${payeesDropdownList}" itemValue="name" itemLabel="name" />
+    					<form:options items="${payeesDropdownList}" itemValue="id" itemLabel="name" />
 						</form:select>
             <!-- <a href="#" class="list-remove">Remove</a> -->
         	</div>
