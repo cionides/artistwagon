@@ -21,34 +21,46 @@
 		</div>
 	</div>
 </div>
-
-<table class="table table-responsive">
-	<thead>
-		<th>Date</th>
-		<th>Artist(s)</th>
-		<th>Venue/Promoter</th>
-		<th>Price</th>
-		<th>Status</th>
-		<th>Options</th>
-	</thead>
-	<tbody>
-		<c:forEach items="${events}" var="event">
-    	<tr>
-    		<td>${event.date}</td>
-    		<td>
-    			<c:forEach items="${event.payees}" var="payee">
-    				<c:if test="${payee.isArtist()}">
-    					${payee.group.name} <br />
-    				</c:if>
-    			</c:forEach>
-    		</td>
-    		<td>${event.payer.name}</td>
-    		<td><fmt:formatNumber value="${event.price}" type="currency" /></td>
-    		<td>${event.status}</td>
-    		<td><a href="${pageContext.request.contextPath}/app/events/${event.id}">Open Event</a></td>
-    	</tr>
-	  </c:forEach>
-	</tbody>
-</table>
+<div class="row">
+	<div class="col-md-12">
+		<table class="table table-responsive">
+			<thead>
+				<th>Date</th>
+				<th>Artist(s)</th>
+				<th>Venue/Promoter</th>
+				<th>Amount</th>
+				<th>Status</th>
+				<th>Options</th>
+			</thead>
+			<tbody>
+				<c:forEach items="${events}" var="event">
+		    	<tr>
+		    		<td>${event.date}</td>
+		    		<td>
+		    			<c:forEach items="${event.payees}" var="payee">
+		    				${payee.group.name} <br />
+		    			</c:forEach>
+		    		</td>
+		    		<td>${event.payer.name}</td>
+		    		<td><fmt:formatNumber value="${event.totalAmount}" type="currency" /></td>
+		    		<td>${event.status}</td>
+		    		<td>
+		    			<a href="${pageContext.request.contextPath}/app/events/${event.id}">
+		    				<c:choose>
+						      <c:when test="${currentUser.isPayer() && !event.isPaid()}">
+						      	Pay Now
+						      </c:when>
+						      <c:otherwise>
+						      	Open Event
+						      </c:otherwise>
+								</c:choose>
+		    			</a>
+		    		</td>
+		    	</tr>
+			  </c:forEach>
+			</tbody>
+		</table>
+	</div>
+</div>
 	
 <%@include file="/WEB-INF/views/layout/footer.jspf"%>

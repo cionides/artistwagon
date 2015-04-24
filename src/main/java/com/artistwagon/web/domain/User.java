@@ -80,7 +80,7 @@ public class User {
 		this.userRoles = userRoles;
 	}
 	
-	@OneToOne(cascade={CascadeType.ALL})
+	@OneToOne(cascade=CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinColumn(name = "GROUP_ID")
 	public Group getGroup() {
 		return group;
@@ -108,5 +108,23 @@ public class User {
 		} else {
 			return false;
 		}	
+	}
+	
+	@Transient
+	public boolean isArtist() {
+		if(this.getGroup().getType().equals("Artist")) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	@Transient
+	public boolean isAgent() {
+		if(this.getGroup().getType().equals("Agent")) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 }

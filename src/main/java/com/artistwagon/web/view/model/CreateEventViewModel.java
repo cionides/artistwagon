@@ -5,10 +5,10 @@ import org.springframework.util.AutoPopulatingList;
 public class CreateEventViewModel {
 
 	private String date;
-	private AutoPopulatingList<String> payees = 
-			new AutoPopulatingList<String>(String.class);
+	private AutoPopulatingList<EventPayeeViewModel> payees = 
+			new AutoPopulatingList<EventPayeeViewModel>(EventPayeeViewModel.class);
 	private Integer payer;
-	private Double price;
+	private Double agencyFee;
 	
 	public String getDate() {
 		return date;
@@ -17,10 +17,10 @@ public class CreateEventViewModel {
 		this.date = date;
 	}
 	
-	public AutoPopulatingList<String> getPayees() {
+	public AutoPopulatingList<EventPayeeViewModel> getPayees() {
 		return payees;
 	}
-	public void setPayees(AutoPopulatingList<String> payees) {
+	public void setPayees(AutoPopulatingList<EventPayeeViewModel> payees) {
 		this.payees = payees;
 	}
 	
@@ -31,11 +31,10 @@ public class CreateEventViewModel {
 		this.payer = payer;
 	}
 	
-	public Double getPrice() {
-		return price;
+	public Double getAgencyFee() {
+		return agencyFee;
 	}
-	public void setPrice(Double price) {
-		this.price = price;
+	public void setAgencyFee(Double agencyFee) {
+		this.agencyFee = agencyFee;
 	}
-	
 }

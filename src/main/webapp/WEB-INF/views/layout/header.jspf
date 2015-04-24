@@ -39,7 +39,7 @@
             <!-- END navbar header-->
             <!-- START Nav wrapper-->
             <div class="nav-wrapper">
-            	<ul class="nav navbar-nav">
+            	<ul class="nav navbar-nav ml-xl">
         				<li><a href="${pageContext.request.contextPath}/app/events" title="Events">Events</a></li>
         			</ul>
               <!-- START Right Navbar-->

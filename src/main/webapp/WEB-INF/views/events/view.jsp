@@ -25,41 +25,31 @@
 						<td>${event.payer.name}</td>
 					</tr>
 					<tr>
-						<td class="col-lg-3"><strong>Agent(s)</strong></td>
+						<td class="col-lg-3"><strong>Artist(s)</strong></td>
 						<td>
 							<c:forEach items="${event.payees}" var="payee">
-    						<c:if test="${payee.isAgent()}">
-    							${payee.group.name} <br />
-    						</c:if>
+    							${payee.group.name} 
+    							<c:if test="${currentUser.isAgent()}">
+    								 - <fmt:formatNumber value="${payee.amount}" type="currency" /> 
+    							</c:if>
+    							<br />
     					</c:forEach>
     				</td>
 					</tr>
+					<c:if test="${currentUser.isAgent()}">
+						<tr>
+							<td class="col-lg-3"><strong>Agency Fee</strong></td>
+							<td><fmt:formatNumber value="${event.agencyFee}" type="currency" /> </td>
+						</tr>
+					</c:if>
 					<tr>
-						<td class="col-lg-3"><strong>Artist</strong></td>
-						<td>
-							<c:forEach items="${event.payees}" var="payee">
-    						<c:if test="${payee.isArtist()}">
-    							${payee.group.name} <br />
-    						</c:if>
-    					</c:forEach>
-    				</td>
-					</tr>
-					<tr>
-						<td class="col-lg-3"><strong>Price</strong></td>
-						<td><fmt:formatNumber value="${event.price}" type="currency" /></td>
+						<td class="col-lg-3"><strong>Total Amount</strong></td>
+						<td><fmt:formatNumber value="${event.totalAmount}" type="currency" /></td>
 					</tr>
 				</tbody>
 			</table>
 				<c:if test="${currentUser.isPayer() && !event.isPaid()}">
 					<a href="${pageContext.request.contextPath}/app/events/${event.id}/makePayment" class="btn btn-success btn-block btn-lg">Pay Now</a>
-				</c:if>
-				<c:if test="${currentUser.isPayee() && event.isPaid()}">
-					<div class="col-lg-6">
-						<a href="" class="btn btn-primary btn-block btn-lg">Split</a>
-					</div>
-					<div class="col-lg-6">
-						<a href="" class="btn btn-primary btn-block btn-lg">Cash Out</a>
-					</div>
 				</c:if>
 			</div>
 		</div>

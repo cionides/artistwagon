@@ -24,9 +24,10 @@ public class Event {
 	
 	private Integer id;
 	private String date;
+	private Group owner;
 	private Group payer;
-	private Double price;
 	private String status;
+	private Double agencyFee;
 	private List<EventPayee> payees = new ArrayList<EventPayee>(); 
 	
 	public Event() {
@@ -66,16 +67,6 @@ public class Event {
 		this.payer = payer;
 	}
 	
-	@Column(name = "PRICE",
-			nullable = false)
-	public Double getPrice() {
-		return price;
-	}
-
-	public void setPrice(Double price) {
-		this.price = price;
-	}
-	
 	@Column(name = "STATUS",
 			nullable = false)
 	public String getStatus() {
@@ -95,12 +86,22 @@ public class Event {
 		this.payees = payees;
 	}
 	
-	@Transient
-	public boolean isPaid() {
-		if(this.getStatus().equals("Paid")) {
-			return true;
-		} else {
-			return false;
-		}
+	@OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "OWNER_ID")
+	public Group getOwner() {
+		return owner;
+	}
+
+	public void setOwner(Group owner) {
+		this.owner = owner;
+	}
+	
+	@Column(name = "AGENCY_FEE")
+	public Double getAgencyFee() {
+		return agencyFee;
+	}
+
+	public void setAgencyFee(Double agencyFee) {
+		this.agencyFee = agencyFee;
 	}
 }

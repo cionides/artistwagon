@@ -36,7 +36,7 @@ public class GroupDaoImpl implements GroupDao {
 		List<Group> groups = new ArrayList<Group>();
 		
 		Query query = sessionFactory.getCurrentSession()
-				.createQuery("From Group Where Type='Artist' OR Type='Agent'");
+				.createQuery("From Group Where Type='Artist'");
 		
 		groups = query.list();
 		

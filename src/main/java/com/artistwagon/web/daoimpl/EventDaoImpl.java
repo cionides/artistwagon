@@ -12,6 +12,7 @@ import org.springframework.stereotype.Repository;
 
 import com.artistwagon.web.dao.EventDao;
 import com.artistwagon.web.domain.Event;
+import com.artistwagon.web.domain.Group;
 
 @Repository
 public class EventDaoImpl implements EventDao {
@@ -20,14 +21,17 @@ public class EventDaoImpl implements EventDao {
 	private SessionFactory sessionFactory;
 	
 	@SuppressWarnings("unchecked")
-	public List<Event> getEvents() {
+	public List<Event> getEvents(Group group) {
 		
 		List<Event> events = new ArrayList<Event>();
 		
-		Query query = sessionFactory.getCurrentSession()
-				.createQuery("From Event");
+		Session session = sessionFactory.openSession();
+		Query query = session.createQuery("From Event as event where owner=:group or payer=:group")
+				.setParameter("group", group);
 		
 		events = query.list();
+		
+		session.close();
 		
 		return events;
 	}

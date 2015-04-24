@@ -4,13 +4,14 @@ import java.util.List;
 
 import com.artistwagon.web.domain.Event;
 import com.artistwagon.web.view.model.CreateEventViewModel;
+import com.artistwagon.web.view.model.EventViewModel;
 
 public interface EventService {
 	
-	public List<Event> getEvents();
+	public List<EventViewModel> getEvents();
 	
 	public void createEvent(CreateEventViewModel event);
 	
-	public Event getEventById(Integer eventId);
+	public EventViewModel getEventById(Integer eventId);
  
 }

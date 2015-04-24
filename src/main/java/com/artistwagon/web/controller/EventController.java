@@ -26,6 +26,7 @@ import com.artistwagon.web.service.GroupService;
 import com.artistwagon.web.service.TransactionService;
 import com.artistwagon.web.service.UserService;
 import com.artistwagon.web.view.model.CreateEventViewModel;
+import com.artistwagon.web.view.model.EventViewModel;
 
 @Controller
 public class EventController extends BaseController {
@@ -52,7 +53,7 @@ public class EventController extends BaseController {
 		
 		try {
 			
-			List<Event> events = new ArrayList<Event>();
+			List<EventViewModel> events = new ArrayList<EventViewModel>();
 			events = eventService.getEvents();
 			
 			model.addObject("events", events);
@@ -121,7 +122,7 @@ public class EventController extends BaseController {
 		
 		try {
 			
-			Event event = eventService.getEventById(eventId);
+			EventViewModel event = eventService.getEventById(eventId);
 			model.addObject("event", event);
 			
 		} catch(Exception e) {

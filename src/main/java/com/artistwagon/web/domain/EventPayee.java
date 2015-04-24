@@ -20,6 +20,7 @@ public class EventPayee {
 	private Integer id;
 	private Event event;
 	private Group group;
+	private Double amount;
 	
 	public EventPayee() {
 		
@@ -54,22 +55,12 @@ public class EventPayee {
 		this.group = group;
 	}
 	
-	@Transient
-	public boolean isArtist() {
-		if(this.getGroup().getType().equals("Artist")) {
-			return true;
-		} else {
-			return false;
-		}
-	}
-	
-	@Transient
-	public boolean isAgent() {
-		if(this.getGroup().getType().equals("Agent")) {
-			return true;
-		} else {
-			return false;
-		}
+	@Column(name = "AMOUNT")
+	public Double getAmount() {
+		return amount;
 	}
 
+	public void setAmount(Double amount) {
+		this.amount = amount;
+	}
 }
