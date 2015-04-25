@@ -103,7 +103,7 @@ public class User {
 	@Transient
 	public Boolean isPayee() {
 		
-		if(this.getGroup().getType().equals("Artist") || this.getGroup().getType().equals("Agent")) {
+		if(this.getGroup().getType().equals("Artist")) {
 			return true;
 		} else {
 			return false;
@@ -120,8 +120,17 @@ public class User {
 	}
 	
 	@Transient
-	public boolean isAgent() {
+	public boolean isAgency() {
 		if(this.getGroup().getType().equals("Agent")) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	@Transient
+	public boolean isVenue() {
+		if(this.getGroup().getType().equals("Venue")) {
 			return true;
 		} else {
 			return false;

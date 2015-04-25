@@ -7,7 +7,7 @@
 #
 # Host: localhost (MySQL 5.6.22)
 # Database: artistwagon
-# Generation Time: 2015-04-21 23:22:49 +0000
+# Generation Time: 2015-04-25 05:09:09 +0000
 # ************************************************************
 
 
@@ -27,10 +27,11 @@ DROP TABLE IF EXISTS `EVENT`;
 
 CREATE TABLE `EVENT` (
   `EVENT_ID` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `OWNER_ID` int(11) DEFAULT NULL,
+  `PAYER_ID` int(11) DEFAULT NULL,
   `DATE` varchar(11) NOT NULL DEFAULT '',
-  `PAYER_ID` int(11) NOT NULL,
-  `PRICE` double(20,2) NOT NULL,
   `STATUS` varchar(45) NOT NULL DEFAULT '',
+  `AGENCY_FEE` double(20,2) DEFAULT NULL,
   PRIMARY KEY (`EVENT_ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -45,6 +46,7 @@ CREATE TABLE `EVENT_PAYEE` (
   `EVENT_PAYEE_ID` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `EVENT_ID` int(11) DEFAULT NULL,
   `GROUP_ID` int(11) DEFAULT NULL,
+  `AMOUNT` double(20,0) DEFAULT NULL,
   PRIMARY KEY (`EVENT_PAYEE_ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -102,7 +104,8 @@ INSERT INTO `USER` (`USERNAME`, `PASSWORD`, `IS_ENABLED`, `GROUP_ID`)
 VALUES
 	('durty.nellies@gmail.com','$2a$10$04TVADrR6/SPLBjsK0N30.Jf5fNjBugSACeGv1S69dZALR7lSov0y',1,2),
 	('josh@doubledbooking.com','$2a$10$04TVADrR6/SPLBjsK0N30.Jf5fNjBugSACeGv1S69dZALR7lSov0y',1,3),
-	('matt.adelberger@gmail.com','$2a$10$04TVADrR6/SPLBjsK0N30.Jf5fNjBugSACeGv1S69dZALR7lSov0y',1,1);
+	('matt.adelberger@gmail.com','$2a$10$04TVADrR6/SPLBjsK0N30.Jf5fNjBugSACeGv1S69dZALR7lSov0y',1,1),
+	('toby.keiths@gmail.com','$2a$10$04TVADrR6/SPLBjsK0N30.Jf5fNjBugSACeGv1S69dZALR7lSov0y',1,9);
 
 /*!40000 ALTER TABLE `USER` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -130,7 +133,8 @@ INSERT INTO `USER_ROLE` (`USER_ROLE_ID`, `USERNAME`, `ROLE`)
 VALUES
 	(2,'durty.nellies@gmail.com','ROLE_USER'),
 	(3,'josh@doubledbooking.com','ROLE_USER'),
-	(1,'matt.adelberger@gmail.com','ROLE_USER');
+	(1,'matt.adelberger@gmail.com','ROLE_USER'),
+	(4,'toby.keiths@gmail.com','ROLE_USER');
 
 /*!40000 ALTER TABLE `USER_ROLE` ENABLE KEYS */;
 UNLOCK TABLES;

@@ -78,6 +78,7 @@ public class EventViewModel {
 			return false;
 		}
 	}
+	
 	public Double getAgencyFee() {
 		return agencyFee;
 	}

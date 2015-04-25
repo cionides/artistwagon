@@ -15,7 +15,9 @@
 		<h1 class="mt0">Events</h1>
 	</div>
 	<div class="col-md-12 mb-lg pr0">
-		<a href="${pageContext.request.contextPath}/app/events/new" class="btn btn-primary btn-lg radius-clear">Create New Event</a>
+		<c:if test="${currentUser.isAgency()}">
+			<a href="${pageContext.request.contextPath}/app/events/new" class="btn btn-primary btn-lg radius-clear">Create New Event</a>
+		</c:if>
 		<div class="col-md-6 pull-right">
 			<input type="text" placeholder="Search events..." class="form-control input-lg pr0 radius-clear" />
 		</div>

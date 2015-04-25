@@ -26,7 +26,8 @@ public class EventDaoImpl implements EventDao {
 		List<Event> events = new ArrayList<Event>();
 		
 		Session session = sessionFactory.openSession();
-		Query query = session.createQuery("From Event as event where owner=:group or payer=:group")
+		Query query = session.createQuery("From Event event inner join fetch event.payees"
+				+ " payees where payees.group=:group or event.payer=:group or event.owner=:group")
 				.setParameter("group", group);
 		
 		events = query.list();

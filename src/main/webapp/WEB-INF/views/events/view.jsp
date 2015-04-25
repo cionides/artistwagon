@@ -29,14 +29,14 @@
 						<td>
 							<c:forEach items="${event.payees}" var="payee">
     							${payee.group.name} 
-    							<c:if test="${currentUser.isAgent()}">
+    							<c:if test="${currentUser.isAgency()}">
     								 - <fmt:formatNumber value="${payee.amount}" type="currency" /> 
     							</c:if>
     							<br />
     					</c:forEach>
     				</td>
 					</tr>
-					<c:if test="${currentUser.isAgent()}">
+					<c:if test="${currentUser.isAgency()}">
 						<tr>
 							<td class="col-lg-3"><strong>Agency Fee</strong></td>
 							<td><fmt:formatNumber value="${event.agencyFee}" type="currency" /> </td>
