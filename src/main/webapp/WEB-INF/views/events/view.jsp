@@ -25,23 +25,18 @@
 						<td>${event.payer.name}</td>
 					</tr>
 					<tr>
-						<td class="col-lg-3"><strong>Artist(s)</strong></td>
+						<td class="col-lg-3"><strong>Artist<c:if test="${event.payees.size() > 1}">(s)</c:if></strong></td>
 						<td>
 							<c:forEach items="${event.payees}" var="payee">
     							${payee.group.name} 
-    							<c:if test="${currentUser.isAgency()}">
-    								 - <fmt:formatNumber value="${payee.amount}" type="currency" /> 
+    							<c:if test="${!currentUser.isVenue()}"> <br/>
+    								 <small class="ml-lg">Amount: <fmt:formatNumber value="${payee.amount}" type="currency" /></small> <br/>
+    								 <small class="ml-lg">Agency Fee: <fmt:formatNumber value="${payee.agencyFee}" type="currency" /></small>
     							</c:if>
     							<br />
     					</c:forEach>
     				</td>
 					</tr>
-					<c:if test="${currentUser.isAgency()}">
-						<tr>
-							<td class="col-lg-3"><strong>Agency Fee</strong></td>
-							<td><fmt:formatNumber value="${event.agencyFee}" type="currency" /> </td>
-						</tr>
-					</c:if>
 					<tr>
 						<td class="col-lg-3"><strong>Total Amount</strong></td>
 						<td><fmt:formatNumber value="${event.totalAmount}" type="currency" /></td>

@@ -19,7 +19,7 @@
 			<a href="${pageContext.request.contextPath}/app/events/new" class="btn btn-primary btn-lg radius-clear">Create New Event</a>
 		</c:if>
 		<div class="col-md-6 pull-right">
-			<input type="text" placeholder="Search events..." class="form-control input-lg pr0 radius-clear" />
+
 		</div>
 	</div>
 </div>
@@ -28,7 +28,9 @@
 		<table class="table table-responsive">
 			<thead>
 				<th>Date</th>
+				<c:if test="${!currentUser.isArtist()}">
 				<th>Artist(s)</th>
+				</c:if>
 				<th>Venue/Promoter</th>
 				<th>Amount</th>
 				<th>Status</th>
@@ -38,11 +40,13 @@
 				<c:forEach items="${events}" var="event">
 		    	<tr>
 		    		<td>${event.date}</td>
+		    		<c:if test="${!currentUser.isArtist()}">
 		    		<td>
 		    			<c:forEach items="${event.payees}" var="payee">
 		    				${payee.group.name} <br />
 		    			</c:forEach>
 		    		</td>
+		    		</c:if>
 		    		<td>${event.payer.name}</td>
 		    		<td><fmt:formatNumber value="${event.totalAmount}" type="currency" /></td>
 		    		<td>${event.status}</td>

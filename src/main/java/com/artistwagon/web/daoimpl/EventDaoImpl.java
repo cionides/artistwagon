@@ -3,6 +3,8 @@ package com.artistwagon.web.daoimpl;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.hibernate.Criteria;
+import org.hibernate.Hibernate;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -26,9 +28,10 @@ public class EventDaoImpl implements EventDao {
 		List<Event> events = new ArrayList<Event>();
 		
 		Session session = sessionFactory.openSession();
-		Query query = session.createQuery("From Event event inner join fetch event.payees"
+		Query query = session.createQuery("From Event event left join fetch event.payees"
 				+ " payees where payees.group=:group or event.payer=:group or event.owner=:group")
-				.setParameter("group", group);
+				.setParameter("group", group)
+				.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
 		
 		events = query.list();
 		

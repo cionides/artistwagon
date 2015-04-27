@@ -3,8 +3,14 @@ package com.artistwagon.web.view.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+
 import com.artistwagon.web.domain.EventPayee;
 import com.artistwagon.web.domain.Group;
+import com.artistwagon.web.domain.User;
+import com.artistwagon.web.service.UserService;
 
 public class EventViewModel {
 	
@@ -13,7 +19,6 @@ public class EventViewModel {
 	private Group owner;
 	private Group payer;
 	private String status;
-	private Double agencyFee = 0.0;
 	private Double totalAmount = 0.0;
 	private List<EventPayee> payees = new ArrayList<EventPayee>();
 	
@@ -54,10 +59,8 @@ public class EventViewModel {
 	
 	public Double gettotalAmount() {
 		
-		totalAmount = totalAmount + this.getAgencyFee();
-		
 		for(EventPayee eventPayee : this.getPayees()) {
-			totalAmount = totalAmount + eventPayee.getAmount();
+			totalAmount = totalAmount + eventPayee.getAmount() + eventPayee.getAgencyFee();
 		}
 		
 		return totalAmount;
@@ -78,12 +81,4 @@ public class EventViewModel {
 			return false;
 		}
 	}
-	
-	public Double getAgencyFee() {
-		return agencyFee;
-	}
-	public void setAgencyFee(Double agencyFee) {
-		this.agencyFee = agencyFee;
-	}
-	
 }

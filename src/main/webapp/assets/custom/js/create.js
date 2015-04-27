@@ -16,6 +16,18 @@ $(document).ready(function() {
     //Calculates Total Price
     $(document).on('keyup', '.cost-input', function() {
     	
+    	calculateTotalAmount();
+    	
+    });
+    
+    $(document).on('click', '.list-remove', function() {
+    	
+    	calculateTotalAmount();
+    	
+    });
+    
+    function calculateTotalAmount() {
+    	
     	totalAmount = 0;
     	var allCostInputs = $('.cost-input');
     	var agencyFee = $('#agency-fee');
@@ -31,6 +43,6 @@ $(document).ready(function() {
     	
     	$('#totalAmount').text('$' + totalAmount);
     	
-    });
+    };
 
 });

@@ -8,7 +8,6 @@ public class CreateEventViewModel {
 	private AutoPopulatingList<EventPayeeViewModel> payees = 
 			new AutoPopulatingList<EventPayeeViewModel>(EventPayeeViewModel.class);
 	private Integer payer;
-	private Double agencyFee;
 	
 	public String getDate() {
 		return date;
@@ -29,12 +28,5 @@ public class CreateEventViewModel {
 	}
 	public void setPayer(Integer payer) {
 		this.payer = payer;
-	}
-	
-	public Double getAgencyFee() {
-		return agencyFee;
-	}
-	public void setAgencyFee(Double agencyFee) {
-		this.agencyFee = agencyFee;
 	}
 }

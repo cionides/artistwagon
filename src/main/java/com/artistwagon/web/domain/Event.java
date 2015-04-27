@@ -17,6 +17,9 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
 
 @Entity
 @Table(name = "EVENT")
@@ -27,7 +30,6 @@ public class Event {
 	private Group owner;
 	private Group payer;
 	private String status;
-	private Double agencyFee;
 	private List<EventPayee> payees = new ArrayList<EventPayee>(); 
 	
 	public Event() {
@@ -94,14 +96,5 @@ public class Event {
 
 	public void setOwner(Group owner) {
 		this.owner = owner;
-	}
-	
-	@Column(name = "AGENCY_FEE")
-	public Double getAgencyFee() {
-		return agencyFee;
-	}
-
-	public void setAgencyFee(Double agencyFee) {
-		this.agencyFee = agencyFee;
 	}
 }

@@ -39,6 +39,7 @@ public class EventServiceImpl implements EventService {
 		User currentUser = userService.getUserByUsername(auth.getName());
 		
 		List<Event> events = eventDao.getEvents(currentUser.getGroup());
+		
 		List<EventViewModel> eventViewModels = new ArrayList<EventViewModel>();
 		
 		for(Event event : events) {
@@ -49,7 +50,6 @@ public class EventServiceImpl implements EventService {
 			eventViewModel.setPayees(event.getPayees());
 			eventViewModel.setPayer(event.getPayer());
 			eventViewModel.setStatus(event.getStatus());
-			eventViewModel.setAgencyFee(event.getAgencyFee());
 			
 			eventViewModels.add(eventViewModel);
 			
@@ -64,13 +64,6 @@ public class EventServiceImpl implements EventService {
 		Event newEvent = new Event();
 		newEvent.setDate(event.getDate());
 		
-		if(event.getAgencyFee() == null) {
-			Double agencyFee = 0.0;
-			newEvent.setAgencyFee(agencyFee);
-		} else {
-			newEvent.setAgencyFee(event.getAgencyFee());
-		}
-		
 		List<EventPayee> payees = new ArrayList<EventPayee>();
 		
 		for (EventPayeeViewModel payee :  event.getPayees()) {
@@ -81,7 +74,14 @@ public class EventServiceImpl implements EventService {
 			group.setId(Integer.parseInt(payee.getGroupId()));
 			eventPayee.setGroup(group);
 			
-			eventPayee.setAmount(Double.parseDouble(payee.getCost()));
+			eventPayee.setAmount(Double.parseDouble(payee.getAmount()));
+			
+			if(payee.getAgencyFee().equals("")) {
+				Double agencyFee = 0.0;
+				eventPayee.setAgencyFee(agencyFee);
+			} else {
+				eventPayee.setAgencyFee(Double.parseDouble(payee.getAgencyFee()));
+			}
 			
 			payees.add(eventPayee);
 		}
@@ -113,10 +113,28 @@ public class EventServiceImpl implements EventService {
 		eventViewModel.setId(event.getId());
 		eventViewModel.setDate(event.getDate());
 		eventViewModel.setOwner(event.getOwner());
-		eventViewModel.setPayees(event.getPayees());
 		eventViewModel.setPayer(event.getPayer());
 		eventViewModel.setStatus(event.getStatus());
-		eventViewModel.setAgencyFee(event.getAgencyFee());
+		
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		User currentUser = userService.getUserByUsername(auth.getName());
+		
+		if(currentUser.isArtist()) {
+			
+			List<EventPayee> eventPayees = new ArrayList<EventPayee>();
+			
+			for(EventPayee eventPayee : event.getPayees()) {
+				
+				if(eventPayee.getGroup().getId().equals(currentUser.getGroup().getId())) {
+					eventPayees.add(eventPayee);
+				}
+			}
+			
+			eventViewModel.setPayees(eventPayees);
+			
+		} else {
+			eventViewModel.setPayees(event.getPayees());
+		}
 		
 		return eventViewModel;
 	}
