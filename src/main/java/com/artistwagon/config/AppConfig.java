@@ -54,11 +54,11 @@ public class AppConfig extends WebMvcConfigurerAdapter {
 	
 	@Bean(name = "dataSource")
 		public DriverManagerDataSource dataSource() {
-		    DriverManagerDataSource driverManagerDataSource = new DriverManagerDataSource();
-		    driverManagerDataSource.setDriverClassName("com.mysql.jdbc.Driver");
+		   // DriverManagerDataSource driverManagerDataSource = new DriverManagerDataSource();
+		    //driverManagerDataSource.setDriverClassName("com.mysql.jdbc.Driver");
 		    //driverManagerDataSource.setUrl("jdbc:mysql://localhost:3306/artistwagon");
 		    //driverManagerDataSource.setUsername("root");
-		    
+		    Class.forName("com.mysql.jdbc.GoogleDriver");
 		    driverManagerDataSource.setUrl("jdbc:google:mysql://innate-might-93219:aw-dev-sql?user=root");
 		    
 		    return driverManagerDataSource;
