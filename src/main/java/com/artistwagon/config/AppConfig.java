@@ -59,7 +59,7 @@ public class AppConfig extends WebMvcConfigurerAdapter {
 		    //driverManagerDataSource.setUrl("jdbc:mysql://localhost:3306/artistwagon");
 		    //driverManagerDataSource.setUsername("root");
 		    
-		    driverManagerDataSource.setUrl("jdbc:google:mysql://arcane-mission-217:aw-dev?user=root");
+		    driverManagerDataSource.setUrl("jdbc:google:mysql://innate-might-93219:aw-dev-sql?user=root");
 		    
 		    return driverManagerDataSource;
 	 }
