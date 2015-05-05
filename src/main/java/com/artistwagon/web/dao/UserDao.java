@@ -8,4 +8,6 @@ public interface UserDao {
 	
 	public void createUser(User user);
 	
+	public void updateUser(User user);
+	
 }

@@ -22,6 +22,10 @@ public class User {
 	private String password;
 	private Boolean enabled;
 	private Group group;
+	private String synapseUsername;
+	private Integer synapseUserId;
+	private String synapseSessionToken;
+	private Double balance;
 	private Set<UserRole> userRoles = new HashSet<UserRole>(0);
  
 	public User() {
@@ -90,6 +94,42 @@ public class User {
 		this.group = group;
 	}
 	
+	@Column(name = "SYNAPSE_USERNAME")
+	public String getSynapseUsername() {
+		return synapseUsername;
+	}
+
+	public void setSynapseUsername(String synapseUsername) {
+		this.synapseUsername = synapseUsername;
+	}
+	
+	@Column(name = "SYNAPSE_USER_ID")
+	public Integer getSynapseUserId() {
+		return synapseUserId;
+	}
+
+	public void setSynapseUserId(Integer synapseUserId) {
+		this.synapseUserId = synapseUserId;
+	}
+	
+	@Column(name = "SYNAPSE_SESSION_TOKEN")
+	public String getSynapseSessionToken() {
+		return synapseSessionToken;
+	}
+
+	public void setSynapseSessionToken(String synapseSessionToken) {
+		this.synapseSessionToken = synapseSessionToken;
+	}
+	
+	@Column(name = "BALANCE")
+	public Double getBalance() {
+		return balance;
+	}
+
+	public void setBalance(Double balance) {
+		this.balance = balance;
+	}
+	
 	@Transient
 	public Boolean isPayer() {
 		
@@ -121,7 +161,7 @@ public class User {
 	
 	@Transient
 	public boolean isAgency() {
-		if(this.getGroup().getType().equals("Agent")) {
+		if(this.getGroup().getType().equals("Agency")) {
 			return true;
 		} else {
 			return false;

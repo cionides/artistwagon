@@ -11,20 +11,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.persistence.Transient;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
-
-import com.artistwagon.web.service.UserService;
 
 @Entity
 @Table(name = "EVENT_PAYEE")
 public class EventPayee {
-	
-	@Autowired
-	UserService userService;
 	
 	private Integer id;
 	private Event event;

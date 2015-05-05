@@ -47,4 +47,16 @@ public class UserDaoImpl implements UserDao {
 		session.close();	
 	}
 	
+	public void updateUser(User user) {
+		
+		Session session = sessionFactory.openSession();
+		Transaction transaction = session.beginTransaction();	
+		
+		session.merge(user);
+		transaction.commit();
+		
+		session.close();	
+		
+	}
+		
 }

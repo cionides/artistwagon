@@ -6,6 +6,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -45,6 +47,9 @@ public class EventController extends BaseController {
 	@Autowired
 	TransactionService transactionService;
 	
+	@Autowired
+	HttpSession session;
+	
 	@RequestMapping(value = {"app/events"}, method = RequestMethod.GET)
 	public ModelAndView viewAllEvents() {
 		
@@ -52,6 +57,8 @@ public class EventController extends BaseController {
 		model.setViewName("events/all");
 		
 		setCurrentUser(model);
+		
+		//Object consumerKey = session.getAttribute("synapseConsumerKey");
 		
 		try {
 			

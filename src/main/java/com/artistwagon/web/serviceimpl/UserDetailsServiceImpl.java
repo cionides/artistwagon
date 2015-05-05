@@ -5,6 +5,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -14,9 +16,14 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
+import org.springframework.web.client.RestTemplate;
 
+import com.artistwagon.constant.SynapseConstant;
 import com.artistwagon.web.dao.UserDao;
 import com.artistwagon.web.domain.UserRole;
+import com.artistwagon.web.service.SynapseService;
 
 @Service("userDetailsService")
 public class UserDetailsServiceImpl implements UserDetailsService {
@@ -24,13 +31,17 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 	@Autowired
 	private UserDao userDao;
 	
+	@Autowired
+	SynapseService synapseService;
+	
 	@Transactional(readOnly=true)
 	public UserDetails loadUserByUsername(String username)
 			throws UsernameNotFoundException {
 		
 		com.artistwagon.web.domain.User user = userDao.getUserByUserName(username);
-		List<GrantedAuthority> authorities = 
-                                      buildUserAuthority(user.getUserRoles());
+		List<GrantedAuthority> authorities = buildUserAuthority(user.getUserRoles());
+		
+		synapseService.startUserSession(user);
  
 		return buildUserForAuthentication(user, authorities);
 		

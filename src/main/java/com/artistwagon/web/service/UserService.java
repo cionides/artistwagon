@@ -7,5 +7,7 @@ public interface UserService {
 	public User getUserByUsername(String username);
 	
 	public void createUser(User user);
+	
+	public void updateUser(User user);
  
 }

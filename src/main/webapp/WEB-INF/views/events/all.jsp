@@ -10,33 +10,34 @@
    </div>
 </c:if>
 
-<div class="row">
-	<div class="col-md-12 mb-xl">
-		<h1 class="mt0">Events</h1>
+<div class="row mt-lg">
+	<div class="col-md-2">
+		<p class="mb-sm">Current Balance</p>
+		<h2 class="mt0"><fmt:formatNumber value="${currentUser.balance}" type="currency" /></h2>
+		<a href="#">Withdraw</a>
 	</div>
-	<div class="col-md-12 mb-lg pr0">
-		<c:if test="${currentUser.isAgency()}">
-			<a href="${pageContext.request.contextPath}/app/events/new" class="btn btn-primary btn-lg radius-clear">Create New Event</a>
-		</c:if>
-		<div class="col-md-6 pull-right">
-
+	<div class="col-md-10 bl">
+		<div class="col-md-6 mt-sm">
+			<h1 class="mt0">Events</h1>
 		</div>
-	</div>
-</div>
-<div class="row">
-	<div class="col-md-12">
-		<table class="table table-responsive">
-			<thead>
-				<th>Date</th>
-				<c:if test="${!currentUser.isArtist()}">
-				<th>Artist(s)</th>
-				</c:if>
-				<th>Venue/Promoter</th>
-				<th>Amount</th>
-				<th>Status</th>
-				<th>Options</th>
-			</thead>
-			<tbody>
+		<div class="col-md-6">
+			<c:if test="${currentUser.isAgency()}">
+				<a href="${pageContext.request.contextPath}/app/events/new" class="pull-right btn btn-primary btn-lg radius-clear">Create New Event</a>
+			</c:if>
+		</div>
+		<div class="col-md-12 mt-xl">
+			<table class="table table-responsive">
+				<thead>
+					<th>Date</th>
+					<c:if test="${!currentUser.isArtist()}">
+					<th>Artist(s)</th>
+					</c:if>
+					<th>Venue/Promoter</th>
+					<th>Amount</th>
+					<th>Status</th>
+					<th>Options</th>
+				</thead>
+				<tbody>
 				<c:forEach items="${events}" var="event">
 		    	<tr>
 		    		<td>${event.date}</td>
@@ -66,6 +67,7 @@
 			  </c:forEach>
 			</tbody>
 		</table>
+	</div>
 	</div>
 </div>
 	
