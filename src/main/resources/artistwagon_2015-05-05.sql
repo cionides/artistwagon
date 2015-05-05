@@ -7,7 +7,7 @@
 #
 # Host: localhost (MySQL 5.6.22)
 # Database: artistwagon
-# Generation Time: 2015-04-27 22:49:45 +0000
+# Generation Time: 2015-05-05 13:36:45 +0000
 # ************************************************************
 
 
@@ -69,17 +69,9 @@ LOCK TABLES `GROUP` WRITE;
 
 INSERT INTO `GROUP` (`GROUP_ID`, `TYPE`, `NAME`)
 VALUES
-	(1,'Artist','Cowboy Jukebox'),
-	(2,'Venue','Durty Nellie\'s'),
-	(3,'Agent','Double D Booking'),
-	(4,'Artist','Nick Lynch'),
-	(5,'Artist','Suburban Cowboys'),
-	(6,'Artist','Derringer & Rye'),
-	(8,'Venue','Whiskey Jacks'),
-	(9,'Venue','Toby Keith\'s Bar & Grill'),
-	(10,'Venue','Old Crow Smokehouse'),
-	(11,'Venue','Firewater Saloon'),
-	(12,'Venue','Cubby Bear');
+	(1,'Agency','Agency'),
+	(2,'Venue','Venue'),
+	(3,'Artist','Artist');
 
 /*!40000 ALTER TABLE `GROUP` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -95,19 +87,21 @@ CREATE TABLE `USER` (
   `PASSWORD` varchar(60) NOT NULL DEFAULT '',
   `IS_ENABLED` tinyint(4) NOT NULL DEFAULT '1',
   `GROUP_ID` int(11) DEFAULT NULL,
+  `BALANCE` double(20,2) DEFAULT NULL,
+  `SYNAPSE_USER_ID` int(11) DEFAULT NULL,
+  `SYNAPSE_USERNAME` varchar(45) DEFAULT NULL,
+  `SYNAPSE_SESSION_TOKEN` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`USERNAME`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 LOCK TABLES `USER` WRITE;
 /*!40000 ALTER TABLE `USER` DISABLE KEYS */;
 
-INSERT INTO `USER` (`USERNAME`, `PASSWORD`, `IS_ENABLED`, `GROUP_ID`)
+INSERT INTO `USER` (`USERNAME`, `PASSWORD`, `IS_ENABLED`, `GROUP_ID`, `BALANCE`, `SYNAPSE_USER_ID`, `SYNAPSE_USERNAME`, `SYNAPSE_SESSION_TOKEN`)
 VALUES
-	('cubby.bear@gmail.com','$2a$10$04TVADrR6/SPLBjsK0N30.Jf5fNjBugSACeGv1S69dZALR7lSov0y',1,12),
-	('durty.nellies@gmail.com','$2a$10$04TVADrR6/SPLBjsK0N30.Jf5fNjBugSACeGv1S69dZALR7lSov0y',1,2),
-	('josh@doubledbooking.com','$2a$10$04TVADrR6/SPLBjsK0N30.Jf5fNjBugSACeGv1S69dZALR7lSov0y',1,3),
-	('matt.adelberger@gmail.com','$2a$10$04TVADrR6/SPLBjsK0N30.Jf5fNjBugSACeGv1S69dZALR7lSov0y',1,1),
-	('toby.keiths@gmail.com','$2a$10$04TVADrR6/SPLBjsK0N30.Jf5fNjBugSACeGv1S69dZALR7lSov0y',1,9);
+	('agency@email.com','$2a$10$04TVADrR6/SPLBjsK0N30.Jf5fNjBugSACeGv1S69dZALR7lSov0y',1,1,9000.00,3069,'6a5deac7cf9d4394b0adb07457af5e','122268e45d3fd9c4a8a2108b52e78fae9548d544'),
+	('artist@email.com','$2a$10$04TVADrR6/SPLBjsK0N30.Jf5fNjBugSACeGv1S69dZALR7lSov0y',1,3,10000.00,3071,'d5e461e093474a4782ea3433d00755','531858f2c4c3efb5f0e40979843879448d37e6e2'),
+	('venue@email.com','$2a$10$04TVADrR6/SPLBjsK0N30.Jf5fNjBugSACeGv1S69dZALR7lSov0y',1,2,10000.00,3070,'20846b73ae1a4039a144c94de9f3c6','19ce55e2def8a434619919da65a0366e3d56baed');
 
 /*!40000 ALTER TABLE `USER` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -133,11 +127,9 @@ LOCK TABLES `USER_ROLE` WRITE;
 
 INSERT INTO `USER_ROLE` (`USER_ROLE_ID`, `USERNAME`, `ROLE`)
 VALUES
-	(5,'cubby.bear@gmail.com','ROLE_USER'),
-	(2,'durty.nellies@gmail.com','ROLE_USER'),
-	(3,'josh@doubledbooking.com','ROLE_USER'),
-	(1,'matt.adelberger@gmail.com','ROLE_USER'),
-	(4,'toby.keiths@gmail.com','ROLE_USER');
+	(1,'agency@email.com','ROLE_USER'),
+	(3,'artist@email.com','ROLE_USER'),
+	(2,'venue@email.com','ROLE_USER');
 
 /*!40000 ALTER TABLE `USER_ROLE` ENABLE KEYS */;
 UNLOCK TABLES;
