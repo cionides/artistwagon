@@ -64,7 +64,7 @@ public class AppConfig extends WebMvcConfigurerAdapter {
 
 			driverManagerDataSource.setDriverClassName("com.mysql.jdbc.GoogleDriver");
 			driverManagerDataSource.setUrl("jdbc:google:mysql://arcane-mission-217:aw-dev?user=root");
-
+		    
 		    return driverManagerDataSource;
 	 }
 	
