@@ -10,7 +10,9 @@ import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
+
 import java.util.Properties;
+
 import org.hibernate.SessionFactory;
 import org.springframework.orm.hibernate4.HibernateTransactionManager;
 import org.springframework.orm.hibernate4.LocalSessionFactoryBuilder;
@@ -55,12 +57,14 @@ public class AppConfig extends WebMvcConfigurerAdapter {
 	@Bean(name = "dataSource")
 		public DriverManagerDataSource dataSource() {
 		    DriverManagerDataSource driverManagerDataSource = new DriverManagerDataSource();
-		    driverManagerDataSource.setDriverClassName("com.mysql.jdbc.Driver");
+		    //driverManagerDataSource.setDriverClassName("com.mysql.jdbc.Driver");
 		    //driverManagerDataSource.setUrl("jdbc:mysql://localhost:3306/artistwagon");
 		    //driverManagerDataSource.setUsername("root");
 		    
-		    driverManagerDataSource.setUrl("jdbc:google:mysql://arcane-mission-217:aw-dev?user=root");
-		    
+
+			driverManagerDataSource.setDriverClassName("com.mysql.jdbc.GoogleDriver");
+			driverManagerDataSource.setUrl("jdbc:google:mysql://arcane-mission-217:aw-dev?user=root");
+
 		    return driverManagerDataSource;
 	 }
 	
