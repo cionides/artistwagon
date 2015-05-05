@@ -11,14 +11,15 @@
 		<spring.security.version>3.2.3.RELEASE</spring.security.version>
 		<jstl.version>1.2</jstl.version>
   </properties>
- 
- <plugin>
-    <artifactId>maven-war-plugin</artifactId>
-    <version>2.4</version>
-    <configuration>
-        <failOnMissingWebXml>false</failOnMissingWebXml>
-    </configuration>
-</plugin>
+ <build>
+	 <plugin>
+	    <artifactId>maven-war-plugin</artifactId>
+	    <version>2.4</version>
+	    <configuration>
+	        <failOnMissingWebXml>false</failOnMissingWebXml>
+	    </configuration>
+	</plugin>
+</build>
  
 	<dependencies>
 		<!-- Spring 3 dependencies -->
